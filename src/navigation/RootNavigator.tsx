@@ -6,7 +6,7 @@ import { useOnboarding } from '../context/OnboardingContext';
 
 export type RootStackParamList = {
   Onboarding: undefined;
-  Home: undefined;
+  MainStack: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -22,7 +22,7 @@ const RootNavigator: React.FC = () => {
       {!completed ? (
         <Stack.Screen name="Onboarding" component={OnboardingStack} />
       ) : (
-        <Stack.Screen name="Home" component={HomeStack} />
+        <Stack.Screen name="MainStack" component={HomeStack} />
       )}
     </Stack.Navigator>
   );

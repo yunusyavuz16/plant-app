@@ -6,15 +6,24 @@ import {
   ImageBackground,
   TouchableOpacity,
   Dimensions,
+  ScrollView,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { OnboardingStackParamList } from "../../navigation/OnboardingStack";
+import { useOnboarding } from "../../context/OnboardingContext";
 import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
 import styles from "./PaywallScreen.styles";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 const CONST_HEIGHT_CONTENT = 600;
+
+// Feature card icons
+const FEATURE_ICONS = {
+  scan: require("../../../assets/paywall/scan-icon.png"),
+  speed: require("../../../assets/paywall/speed-icon.png"),
+  care: require("../../../assets/paywall/care-icon.png"),
+};
 
 /**
  * Final screen in the onboarding flow with paywall.
@@ -22,14 +31,16 @@ const CONST_HEIGHT_CONTENT = 600;
  */
 const PaywallScreen: React.FC<
   NativeStackScreenProps<OnboardingStackParamList, "Paywall">
-> = ({ navigation }) => {
+> = () => {
   const insets = useSafeAreaInsets();
+  const { completeOnboarding } = useOnboarding();
 
   /**
    * Complete onboarding when user closes paywall.
+   * This will trigger RootNavigator to show MainStack.
    */
-  const handleClose = () => {
-    navigation.replace("Home");
+  const handleClose = async () => {
+    await completeOnboarding();
   };
 
   /**
@@ -49,9 +60,9 @@ const PaywallScreen: React.FC<
     >
       <ImageBackground
         source={require("../../../assets/paywall/paywall-top.png")}
-        style={[styles.topImage, { height: SCREEN_HEIGHT * 0.45 }]}
+        style={[styles.topImage, { height: SCREEN_HEIGHT * 0.58 }]}
         resizeMode="cover"
-      ></ImageBackground>
+      />
       <TouchableOpacity
         style={[styles.closeButton, { top: insets.top + 24 }]}
         onPress={handleClose}
@@ -71,23 +82,42 @@ const PaywallScreen: React.FC<
           <Text style={styles.titleBold}>PlantApp</Text> Premium
         </Text>
         <Text style={styles.subtitle}>Access All Features</Text>
-        <View style={styles.featuresRow}>
+        <ScrollView
+          horizontal
+          style={styles.featuresRow}
+          showsHorizontalScrollIndicator={false}
+        >
           <View style={styles.featureCard}>
-            <View style={styles.featureIcon} />
+            <View style={styles.featureIcon}>
+              <Image
+                source={FEATURE_ICONS.scan}
+                style={styles.featureIconImage}
+              />
+            </View>
             <Text style={styles.featureTitle}>Unlimited</Text>
             <Text style={styles.featureDesc}>Plant Identify</Text>
           </View>
-          <View style={styles.featureCard}>
-            <View style={styles.featureIcon} />
+          <View style={[styles.featureCard, styles.marginLeft]}>
+            <View style={styles.featureIcon}>
+              <Image
+                source={FEATURE_ICONS.speed}
+                style={styles.featureIconImage}
+              />
+            </View>
             <Text style={styles.featureTitle}>Faster</Text>
             <Text style={styles.featureDesc}>Process</Text>
           </View>
-          <View style={styles.featureCard}>
-            <View style={styles.featureIcon} />
+          <View style={[styles.featureCard, styles.marginLeft]}>
+            <View style={styles.featureIcon}>
+              <Image
+                source={FEATURE_ICONS.care}
+                style={styles.featureIconImage}
+              />
+            </View>
             <Text style={styles.featureTitle}>Detailed</Text>
-            <Text style={styles.featureDesc}>Plant Care</Text>
+            <Text style={styles.featureDesc}>Plant care</Text>
           </View>
-        </View>
+        </ScrollView>
         <View style={styles.planBox}>
           <View style={styles.planRow}>
             <View style={styles.radio} />
@@ -105,7 +135,10 @@ const PaywallScreen: React.FC<
             <Text style={styles.saveBadgeText}>Save 50%</Text>
           </View>
           <View style={styles.planRow}>
-            <View style={[styles.radio, styles.radioActive]} />
+            <View style={[styles.radio, styles.radioActive]}>
+              {/* white circle */}
+              <View style={styles.radioCircle} />
+            </View>
             <View style={styles.planTextBox}>
               <Text style={styles.planTitle}>1 Year</Text>
               <Text style={styles.planDesc}>
@@ -114,7 +147,7 @@ const PaywallScreen: React.FC<
             </View>
           </View>
         </View>
-        <PrimaryButton label="Try free for 3 days" onPress={handleClose} />
+        <PrimaryButton label="Try free for 3 days" onPress={handleSubscribe} />
         <Text style={styles.legalText}>
           After the 3-day free trial period you'll be charged ₺274.99 per year
           unless you cancel before the trial expires. Yearly Subscription is

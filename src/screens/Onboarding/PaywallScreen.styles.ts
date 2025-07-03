@@ -1,8 +1,6 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet } from "react-native";
 
-const { width, height } = Dimensions.get("window");
-
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   root: {
     flex: 1,
     backgroundColor: "#101E17",
@@ -62,68 +60,81 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   featuresRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
-    marginBottom: 28,
+    padding: 0,
+    margin: 0,
+    maxHeight: 130,
+    marginBottom: 24,
+  },
+  marginLeft: {
+    marginLeft: 8,
   },
   featureCard: {
-    flex: 1,
-    backgroundColor: "rgba(255,255,255,0.06)",
-    borderRadius: 20,
-    marginHorizontal: 6,
-    alignItems: "center",
-    paddingVertical: 18,
-    paddingHorizontal: 8,
+    width: 156,
+    backgroundColor: "rgba(255, 255, 255, 0.08)",
+    borderRadius: 14,
+    padding: 16,
+    height: 130,
   },
   featureIcon: {
-    width: 32,
-    height: 32,
-    backgroundColor: "rgba(255,255,255,0.12)",
+    width: 36,
+    height: 36,
     borderRadius: 8,
-    marginBottom: 10,
+    backgroundColor: "#1D2B23",
+    marginBottom: 16,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  featureIconImage: {
+    width: 24,
+    height: 24,
   },
   featureTitle: {
+    fontSize: 20,
+    fontWeight: "600",
     color: "#fff",
-    fontWeight: "700",
-    fontSize: 16,
-    marginBottom: 2,
+    marginBottom: 4,
   },
   featureDesc: {
-    color: "#B6C2B7",
     fontSize: 13,
-    fontWeight: "400",
+    color: "rgba(255, 255, 255, 0.7)",
   },
   planBox: {
     width: "100%",
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
-    backgroundColor: "rgba(255,255,255,0.04)",
+    borderColor: "rgba(255,255,255,0.3)",
+    backgroundColor: "rgba(255,255,255,0.05)",
     marginBottom: 14,
     padding: 16,
   },
   planBoxActive: {
     borderColor: "#28AF6E",
     backgroundColor: "rgba(40,175,110,0.08)",
+    marginBottom: 24,
   },
   planRow: {
     flexDirection: "row",
     position: "relative",
     alignItems: "center",
   },
+  radioCircle: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: "#fff",
+  },
   radio: {
-    width: 22,
-    height: 22,
+    width: 24,
+    height: 24,
     borderRadius: 11,
-    borderWidth: 2,
-    borderColor: "#B6C2B7",
-    marginRight: 14,
-    backgroundColor: "transparent",
+    backgroundColor: "rgba(255,255,255,0.08)",
+    marginRight: 12,
   },
   radioActive: {
     borderColor: "#28AF6E",
     backgroundColor: "#28AF6E",
+    justifyContent: "center",
+    alignItems: "center",
   },
   planTextBox: {
     flex: 1,
@@ -152,7 +163,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#28AF6E",
-    borderBottomStartRadius: 12,
+    borderBottomStartRadius: 18,
     borderTopRightRadius: 12,
     paddingHorizontal: 10,
     paddingVertical: 2,
@@ -163,32 +174,31 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
   legalText: {
-    color: "#B6C2B7",
-    fontSize: 12,
+    color: "rgba(255,255,255,0.52)",
+    fontSize: 9,
     textAlign: "center",
-    marginTop: 18,
-    marginBottom: 10,
+    marginTop: 8,
+    marginBottom: 12,
   },
   linksRow: {
     width: "100%",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 2,
   },
   link: {
-    color: "#B6C2B7",
-    fontSize: 14,
+    color: "rgba(255,255,255,0.52)",
+
+    fontSize: 11,
     fontWeight: "500",
     marginHorizontal: 6,
     textDecorationLine: "underline",
   },
   linkDot: {
-    color: "#B6C2B7",
-    fontSize: 14,
+    color: "rgba(255,255,255,0.52)",
+
+    fontSize: 11,
     fontWeight: "500",
     marginHorizontal: 0,
   },
 });
-
-export default styles;
