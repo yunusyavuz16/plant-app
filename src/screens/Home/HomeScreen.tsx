@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -8,6 +8,9 @@ import {
   ScrollView,
   Image,
   ImageBackground,
+  ActivityIndicator,
+  FlatList,
+  RefreshControl,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -15,6 +18,8 @@ import { HomeStackParamList } from "../../navigation/HomeStack";
 import SearchIcon from "../../components/icons/SearchIcon";
 import MailIcon from "../../components/icons/MailIcon";
 import ChevronRightIcon from "../../components/icons/ChevronRightIcon";
+import { Category } from '../../types/category';
+import { categoryService } from '../../services/categoryService';
 import styles from "./HomeScreen.styles";
 
 type Props = NativeStackScreenProps<HomeStackParamList, "HomeScreen">;
@@ -29,9 +34,56 @@ const getGreeting = () => {
   return { text: "Good Evening!", emoji: "🌙" };
 };
 
-const HomeScreen: React.FC<Props> = () => {
+export const HomeScreen: React.FC = () => {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+
   const insets = useSafeAreaInsets();
   const greeting = getGreeting();
+
+  const fetchCategories = async () => {
+    try {
+      const response = await categoryService.getCategories();
+      // Sort categories by rank
+      const sortedCategories = response.data.sort((a, b) => a.rank - b.rank);
+      setCategories(sortedCategories);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+      // Here you might want to show an error message to the user
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    fetchCategories();
+  }, []);
+
+  const renderCategoryItem = ({ item }: { item: Category }) => (
+    <TouchableOpacity
+      style={styles.categoryCard}
+      onPress={() => {
+        // Handle category selection
+        console.log('Selected category:', item.title);
+      }}
+    >
+      <Text style={styles.categoryTitle}>
+        {item.title.includes(' ') ? item.title.replace(' ', '\n') : item.title}
+      </Text>
+      <Image
+        source={{ uri: item.image.url }}
+        style={styles.categoryImage}
+        resizeMode="cover"
+      />
+    </TouchableOpacity>
+  );
 
   return (
     <ScrollView style={styles.scrollView}>
@@ -110,40 +162,23 @@ const HomeScreen: React.FC<Props> = () => {
         </ScrollView>
       </View>
 
-      {/* Categories Grid */}
+      {/* Categories Section */}
       <View style={styles.categoriesContainer}>
-        <TouchableOpacity style={styles.categoryCard}>
-          <Text style={styles.categoryTitle}>Edible{"\n"}Plants</Text>
-          <Image
-            source={require("../../../assets/onboarding-1/Content.png")}
-            style={styles.categoryImage}
-            resizeMode="cover"
+        {loading ? (
+          <ActivityIndicator size="large" color="#0000ff" />
+        ) : (
+          <FlatList
+            data={categories}
+            renderItem={renderCategoryItem}
+            keyExtractor={(item) => item.id.toString()}
+            numColumns={2}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.categoriesGrid}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
           />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.categoryCard}>
-          <Text style={styles.categoryTitle}>Ferns</Text>
-          <Image
-            source={require("../../../assets/onboarding-2/onboarding-2-middle.png")}
-            style={styles.categoryImage}
-            resizeMode="cover"
-          />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.categoryCard}>
-          <Text style={styles.categoryTitle}>Cacti and{"\n"}Succulents</Text>
-          <Image
-            source={require("../../../assets/onboarding-1/Content.png")}
-            style={styles.categoryImage}
-            resizeMode="cover"
-          />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.categoryCard}>
-          <Text style={styles.categoryTitle}>Palms</Text>
-          <Image
-            source={require("../../../assets/onboarding-2/onboarding-2-middle.png")}
-            style={styles.categoryImage}
-            resizeMode="cover"
-          />
-        </TouchableOpacity>
+        )}
       </View>
     </ScrollView>
   );
