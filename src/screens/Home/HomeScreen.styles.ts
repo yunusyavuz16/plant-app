@@ -158,4 +158,40 @@ export default StyleSheet.create({
     height: 100,
     borderRadius: 8,
   },
+
+  section: {
+    paddingHorizontal: 24,
+    marginBottom: 24,
+  },
+
+  questionsContainer: {
+    paddingRight: 24,
+  },
+  questionCard: {
+    borderRadius: 12,
+    overflow: "hidden",
+    height: 164,
+  },
+  questionBackground: {
+    flex: 1,
+    justifyContent: "flex-end",
+  },
+  questionBackgroundImage: {
+    borderRadius: 12,
+  },
+  questionContent: {
+    padding: 16,
+    backgroundColor: "rgba(19, 35, 27, 0.5)",
+  },
+  questionTitle: {
+    fontSize: 15,
+    fontWeight: "500",
+    color: "#FFFFFF",
+    marginBottom: 4,
+  },
+  questionSubtitle: {
+    fontSize: 13,
+    color: "#FFFFFF",
+    opacity: 0.8,
+  },
 });

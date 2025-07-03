@@ -1,26 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import React, { useEffect, useState } from "react";
 import {
-  View,
-  Text,
-  SafeAreaView,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-  Image,
-  ImageBackground,
   ActivityIndicator,
   FlatList,
+  Image,
+  ImageBackground,
+  Linking,
   RefreshControl,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  useWindowDimensions,
+  View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { HomeStackParamList } from "../../navigation/HomeStack";
-import SearchIcon from "../../components/icons/SearchIcon";
-import MailIcon from "../../components/icons/MailIcon";
+import { Question } from "../../types/question";
 import ChevronRightIcon from "../../components/icons/ChevronRightIcon";
-import { Category } from '../../types/category';
-import { categoryService } from '../../services/categoryService';
+import MailIcon from "../../components/icons/MailIcon";
+import SearchIcon from "../../components/icons/SearchIcon";
+import { HomeStackParamList } from "../../navigation/HomeStack";
+import { categoryService } from "../../services/categoryService";
+import { Category } from "../../types/category";
 import styles from "./HomeScreen.styles";
+import { questionService } from "../../services/questionService";
 
 type Props = NativeStackScreenProps<HomeStackParamList, "HomeScreen">;
 
@@ -36,21 +39,24 @@ const getGreeting = () => {
 
 export const HomeScreen: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
+  const [questions, setQuestions] = useState<Question[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const { width } = useWindowDimensions();
 
   const insets = useSafeAreaInsets();
   const greeting = getGreeting();
 
-  const fetchCategories = async () => {
+  const fetchData = async () => {
     try {
-      const response = await categoryService.getCategories();
-      // Sort categories by rank
-      const sortedCategories = response.data.sort((a, b) => a.rank - b.rank);
-      setCategories(sortedCategories);
+      const [categoriesData, questionsData] = await Promise.all([
+        categoryService.getCategories(),
+        questionService.getQuestions(),
+      ]);
+      setCategories(categoriesData.data.sort((a, b) => a.rank - b.rank));
+      setQuestions(questionsData);
     } catch (error) {
-      console.error('Error fetching categories:', error);
-      // Here you might want to show an error message to the user
+      console.error("Error fetching data:", error);
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -58,12 +64,12 @@ export const HomeScreen: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchCategories();
+    fetchData();
   }, []);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-    fetchCategories();
+    fetchData();
   }, []);
 
   const renderCategoryItem = ({ item }: { item: Category }) => (
@@ -71,11 +77,11 @@ export const HomeScreen: React.FC = () => {
       style={styles.categoryCard}
       onPress={() => {
         // Handle category selection
-        console.log('Selected category:', item.title);
+        console.log("Selected category:", item.title);
       }}
     >
       <Text style={styles.categoryTitle}>
-        {item.title.includes(' ') ? item.title.replace(' ', '\n') : item.title}
+        {item.title.includes(" ") ? item.title.replace(" ", "\n") : item.title}
       </Text>
       <Image
         source={{ uri: item.image.url }}
@@ -85,12 +91,28 @@ export const HomeScreen: React.FC = () => {
     </TouchableOpacity>
   );
 
+  const renderQuestionItem = ({ item }: { item: Question }) => (
+    <TouchableOpacity
+      style={[styles.questionCard, { width: width - 48 }]}
+      onPress={() => Linking.openURL(item.uri)}
+    >
+      <ImageBackground
+        source={{ uri: item.image_uri }}
+        style={styles.questionBackground}
+        imageStyle={styles.questionBackgroundImage}
+      >
+        <View style={styles.questionContent}>
+          <Text style={styles.questionTitle}>{item.title}</Text>
+          <Text style={styles.questionSubtitle}>{item.subtitle}</Text>
+        </View>
+      </ImageBackground>
+    </TouchableOpacity>
+  );
+
   return (
     <ScrollView style={styles.scrollView}>
       {/* Header */}
-      <ImageBackground
-        source={require("../../../assets/home/Background.png")}
-      >
+      <ImageBackground source={require("../../../assets/home/Background.png")}>
         <View style={[styles.header, { paddingTop: insets.top }]}>
           <Text style={styles.welcomeText}>Hi, plant lover!</Text>
           <Text style={styles.greetingText}>
@@ -131,35 +153,20 @@ export const HomeScreen: React.FC = () => {
       {/* Get Started Section */}
       <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>Get Started</Text>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={styles.articlesRow}
-          contentContainerStyle={styles.articlesContent}
-        >
-          <TouchableOpacity style={styles.articleCard}>
-            <Image
-              source={require("../../../assets/get-started/get-started-bg.png")}
-              style={styles.articleImage}
-              resizeMode="cover"
-            />
-            <View style={styles.articleOverlay} />
-            <Text style={styles.articleTitle}>
-              How to identify plants easily with PlantApp?
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.articleCard, styles.marginLeft]}>
-            <Image
-              source={require("../../../assets/get-started/get-started-middle.png")}
-              style={styles.articleImage}
-              resizeMode="cover"
-            />
-            <View style={styles.articleOverlay} />
-            <Text style={styles.articleTitle}>
-              Species and varieties: what are the differences?
-            </Text>
-          </TouchableOpacity>
-        </ScrollView>
+        {loading ? (
+          <ActivityIndicator size="large" color="#0000ff" />
+        ) : (
+          <FlatList
+            data={questions}
+            horizontal
+            renderItem={renderQuestionItem}
+            keyExtractor={(item) => item.id.toString()}
+            showsVerticalScrollIndicator={false}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+          />
+        )}
       </View>
 
       {/* Categories Section */}
