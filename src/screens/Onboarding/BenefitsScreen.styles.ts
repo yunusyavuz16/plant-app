@@ -1,6 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
-
-const { width, height } = Dimensions.get("window");
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   backgroundImage: {
@@ -28,7 +26,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#13231B",
     lineHeight: 34,
-    textShadowColor: 'rgba(0, 0, 0, 0.25)',
+    textShadowColor: "rgba(0, 0, 0, 0.25)",
     textShadowOffset: { width: 0, height: 4 },
     textShadowRadius: 4,
   },
