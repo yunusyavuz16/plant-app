@@ -1,33 +1,66 @@
 import React from 'react';
-import { View, Text, SafeAreaView } from 'react-native';
+import { View, Text, Image, ImageBackground } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { OnboardingStackParamList } from '../../navigation/OnboardingStack';
 import PrimaryButton from '../../components/PrimaryButton/PrimaryButton';
 import styles from './BenefitsScreen.styles';
 
 /**
- * Third screen in the onboarding flow showing app benefits.
+ * Onboarding 2: Get plant care guides
  */
 const BenefitsScreen: React.FC<
   NativeStackScreenProps<OnboardingStackParamList, 'Benefits'>
 > = ({ navigation }) => {
+  const insets = useSafeAreaInsets();
+
   /**
    * Navigate to the next onboarding step.
    */
-  const handleNext = () => {
+  const handleContinue = () => {
     navigation.navigate('Paywall');
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
-        <Text style={styles.title}>Benefits Screen</Text>
-        <Text style={styles.subtitle}>This is a placeholder for the Benefits screen</Text>
+    <ImageBackground
+      source={require('../../../assets/onboarding-2/Background.png')}
+      style={[
+        styles.backgroundImage,
+        { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 12 },
+      ]}
+      resizeMode="cover"
+    >
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <View style={styles.titleRow}>
+            <Text style={styles.title}>
+              Get plant <Text style={styles.titleHighlight}>care guides</Text>
+            </Text>
+            <Image
+              source={require('../../../assets/onboarding-2/Brush.png')}
+              style={styles.brushImage}
+              resizeMode="contain"
+            />
+          </View>
+        </View>
+        <View style={styles.imageContainer}>
+          <Image
+            source={require('../../../assets/onboarding-2/onboarding-2-middle.png')}
+            style={styles.image}
+          />
+        </View>
+        <View style={styles.bottom}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton label="Continue" onPress={handleContinue} />
+          </View>
+          <View style={styles.pagination}>
+            <View style={styles.dot} />
+            <View style={[styles.dot, styles.dotActive]} />
+            <View style={styles.dot} />
+          </View>
+        </View>
       </View>
-      <View style={styles.bottom}>
-        <PrimaryButton label="Continue" onPress={handleNext} />
-      </View>
-    </SafeAreaView>
+    </ImageBackground>
   );
 };
 
