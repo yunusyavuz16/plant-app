@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     borderRadius: 12, // More rounded corners
     justifyContent: 'center',
     alignItems: 'center',
-    height: 50,
+    height: 56,
     marginHorizontal: 0,
   },
   label: {
