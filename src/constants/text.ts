@@ -1,4 +1,7 @@
 export const TEXTS = {
+  ONBOARDING: {
+    CONTINUE: "Continue",
+  },
   WELCOME: {
     TITLE: "Welcome to",
     APP_NAME: "PlantApp",

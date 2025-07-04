@@ -1,28 +1,23 @@
+import { OnboardingScreenKeyType, OnboardingScreens } from "@/constants/screen";
 import { TEXTS } from "@/constants/text";
-import PrimaryButton from "@components/PrimaryButton/PrimaryButton";
 import { OnboardingStackParamList } from "@navigation/OnboardingStack";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
 import { Image, ImageStyle, Text, View } from "react-native";
 import styles from "./WelcomeScreen.styles";
 import OnBoardLayout from "./components/OnBoardLayout";
-import { OnboardingScreenKeyType, OnboardingScreens } from "@/constants/screen";
+import OnboardingAction from "./components/OnboardingAction";
 
 /**
  * Screen shown first in the onboarding flow.
  */
 const WelcomeScreen: React.FC<
   NativeStackScreenProps<OnboardingStackParamList, "Welcome">
-> = ({ navigation }) => {
-  /**
-   * Navigate to the next onboarding step when the user presses the CTA.
-   */
-  const handleGetStarted = () => {
-    navigation.navigate("Features");
-  };
-
+> = () => {
   return (
-    <OnBoardLayout screenName={OnboardingScreens.WELCOME as OnboardingScreenKeyType}>
+    <OnBoardLayout
+      screenName={OnboardingScreens.WELCOME as OnboardingScreenKeyType}
+    >
       {/* Header Start */}
       <View style={styles.header}>
         <Text style={styles.title}>
@@ -44,12 +39,10 @@ const WelcomeScreen: React.FC<
 
       {/* Bottom Start */}
       <View style={styles.bottom}>
-        <View style={styles.buttonContainer}>
-          <PrimaryButton
-            label={TEXTS.WELCOME.GET_STARTED}
-            onPress={handleGetStarted}
-          />
-        </View>
+        <OnboardingAction
+          label={TEXTS.WELCOME.GET_STARTED}
+          screenName={OnboardingScreens.FEATURES as OnboardingScreenKeyType}
+        />
 
         <View style={styles.bottomInner}>
           <Text style={styles.disclaimer}>

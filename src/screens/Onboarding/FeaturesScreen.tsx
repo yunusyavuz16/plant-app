@@ -1,11 +1,12 @@
 import { OnboardingScreenKeyType, OnboardingScreens } from "@/constants/screen";
-import PrimaryButton from "@components/PrimaryButton/PrimaryButton";
+import { TEXTS } from "@/constants/text";
 import { OnboardingStackParamList } from "@navigation/OnboardingStack";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
 import { Image, Text, View } from "react-native";
 import styles from "./FeaturesScreen.styles";
 import OnBoardLayout from "./components/OnBoardLayout";
+import OnboardingAction from "./components/OnboardingAction";
 import OnboardingMiddleImage from "./components/OnboardingMiddleImage";
 
 /**
@@ -14,14 +15,7 @@ import OnboardingMiddleImage from "./components/OnboardingMiddleImage";
  */
 const FeaturesScreen: React.FC<
   NativeStackScreenProps<OnboardingStackParamList, "Features">
-> = ({ navigation }) => {
-  /**
-   * Navigate to the next onboarding step.
-   */
-  const handleContinue = () => {
-    navigation.navigate("Benefits");
-  };
-
+> = () => {
   return (
     <OnBoardLayout
       screenName={OnboardingScreens.FEATURES as OnboardingScreenKeyType}
@@ -50,9 +44,11 @@ const FeaturesScreen: React.FC<
       />
 
       <View style={styles.bottom}>
-        <View style={styles.buttonContainer}>
-          <PrimaryButton label="Continue" onPress={handleContinue} />
-        </View>
+        <OnboardingAction
+          label={TEXTS.ONBOARDING.CONTINUE}
+          screenName={OnboardingScreens.BENEFITS as OnboardingScreenKeyType}
+          style={styles.buttonContainer}
+        />
 
         <View style={styles.pagination}>
           <View style={[styles.dot, styles.dotActive]} />
