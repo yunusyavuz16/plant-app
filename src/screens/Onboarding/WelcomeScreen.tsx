@@ -23,6 +23,7 @@ const WelcomeScreen: React.FC<
     >
       {/* Header Start */}
       <OnboardingHeader
+        titleHighlightPosition="end"
         screenName={OnboardingScreens.WELCOME as OnboardingScreenKeyType}
         title={TEXTS.WELCOME.TITLE}
         titleHighlight={TEXTS.WELCOME.APP_NAME}

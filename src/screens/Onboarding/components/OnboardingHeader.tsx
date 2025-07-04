@@ -10,11 +10,13 @@ const OnboardingHeader = ({
   title,
   titleHighlight,
   description,
+  titleHighlightPosition = "start",
 }: {
   screenName: OnboardingScreenKeyType;
   title?: string;
   titleHighlight?: string;
   description?: string;
+  titleHighlightPosition?: "start" | "end";
 }) => {
   if (screenName === OnboardingScreens.FEATURES) {
     return (
@@ -55,8 +57,16 @@ const OnboardingHeader = ({
   return (
     <View style={WelcomStyles.header}>
       <Text style={WelcomStyles.title}>
-        {title}{" "}
-        <Text style={WelcomStyles.titleHighlight}>{titleHighlight}</Text>
+        {titleHighlightPosition === "end" ? (
+          title + " "
+        ) : (
+          <Text style={WelcomStyles.titleHighlight}>{titleHighlight} </Text>
+        )}
+        {titleHighlightPosition === "start" ? (
+          title + " "
+        ) : (
+          <Text style={WelcomStyles.titleHighlight}>{titleHighlight}</Text>
+        )}
       </Text>
       <Text style={WelcomStyles.subtitle}>{description}</Text>
     </View>

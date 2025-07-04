@@ -107,6 +107,7 @@ export default StyleSheet.create({
   },
   planBoxesContainer: {
     width: "100%",
+    gap: spacing.lg,
     marginBottom: spacing.xxl,
   },
   planBox: {
@@ -115,7 +116,6 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border.white,
     backgroundColor: colors.overlay.white,
-    marginBottom: spacing.md + 2,
     padding: spacing.lg,
   },
   planBoxActive: {
