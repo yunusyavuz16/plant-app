@@ -1,4 +1,5 @@
 import PrimaryButton from "@components/PrimaryButton/PrimaryButton";
+import { TEXTS } from "@/constants/text";
 import { OnboardingStackParamList } from "@navigation/OnboardingStack";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
@@ -34,11 +35,10 @@ const WelcomeScreen: React.FC<
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.title}>
-            Welcome to <Text style={styles.titleHighlight}>PlantApp</Text>
+            {TEXTS.WELCOME.TITLE}{" "}
+            <Text style={styles.titleHighlight}>{TEXTS.WELCOME.APP_NAME}</Text>
           </Text>
-          <Text style={styles.subtitle}>
-            Identify more than 3000+ plants and{"\n"}88% accuracy.
-          </Text>
+          <Text style={styles.subtitle}>{TEXTS.WELCOME.SUBTITLE}</Text>
         </View>
         <View style={styles.imageContainer}>
           <Image
@@ -48,14 +48,14 @@ const WelcomeScreen: React.FC<
         </View>
         <View style={styles.bottom}>
           <View style={styles.buttonContainer}>
-            <PrimaryButton label="Get Started" onPress={handleGetStarted} />
+            <PrimaryButton label={TEXTS.WELCOME.GET_STARTED} onPress={handleGetStarted} />
           </View>
 
           <View style={styles.bottomInner}>
             <Text style={styles.disclaimer}>
-              By tapping next, you are agreeing to PlantID{"\n"}
-              <Text style={styles.link}>Terms of Use</Text> &{" "}
-              <Text style={styles.link}>Privacy Policy</Text>.
+              {TEXTS.WELCOME.DISCLAIMER}{"\n"}
+              <Text style={styles.link}>{TEXTS.WELCOME.TERMS}</Text> &{" "}
+              <Text style={styles.link}>{TEXTS.WELCOME.PRIVACY}</Text>.
             </Text>
           </View>
         </View>

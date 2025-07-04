@@ -1,4 +1,5 @@
 import SearchIcon from "@components/icons/SearchIcon";
+import { TEXTS } from "@/constants/text";
 import React, { useMemo } from "react";
 import { ImageBackground, Text, TextInput, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -9,14 +10,14 @@ const HomeHeader = () => {
   // Greeting helper
   const greeting = useMemo(() => {
     const hour = new Date().getHours();
-    if (hour < 12) return { text: "Good Morning!", emoji: "🌤️" };
-    if (hour < 17) return { text: "Good Afternoon!", emoji: "⛅" };
-    return { text: "Good Evening!", emoji: "🌙" };
+    if (hour < 12) return { text: TEXTS.HOME.GREETING.MORNING, emoji: "🌤️" };
+    if (hour < 17) return { text: TEXTS.HOME.GREETING.AFTERNOON, emoji: "⛅" };
+    return { text: TEXTS.HOME.GREETING.EVENING, emoji: "🌙" };
   }, []);
   return (
     <ImageBackground source={require("../../../assets/home/Background.png")}>
       <View style={[styles.header, { paddingTop: insets.top }]}>
-        <Text style={styles.welcomeText}>Hi, plant lover!</Text>
+        <Text style={styles.welcomeText}>{TEXTS.HOME.WELCOME}</Text>
         <Text style={styles.greetingText}>
           {greeting.text} {greeting.emoji}
         </Text>
@@ -27,7 +28,7 @@ const HomeHeader = () => {
           <SearchIcon />
           <TextInput
             style={styles.searchInput}
-            placeholder="Search for plants"
+            placeholder={TEXTS.HOME.SEARCH_PLACEHOLDER}
             placeholderTextColor="#AFAFAF"
           />
         </View>

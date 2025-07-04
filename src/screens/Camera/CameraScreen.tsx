@@ -1,14 +1,13 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { HomeStackParamList } from '@navigation/HomeStack';
+import { TEXTS } from "@/constants/text";
+import React from "react";
+import { View, Text } from "react-native";
 
-type Props = NativeStackScreenProps<HomeStackParamList, 'Camera'>;
+type Props = {};
 
 const CameraScreen: React.FC<Props> = () => {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Camera Screen (Coming Soon)</Text>
+      <Text>{TEXTS.COMING_SOON.CAMERA}</Text>
     </View>
   );
 };

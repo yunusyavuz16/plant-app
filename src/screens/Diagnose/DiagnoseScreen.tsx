@@ -1,14 +1,13 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { HomeStackParamList } from '@navigation/HomeStack';
+import { TEXTS } from "@/constants/text";
+import React from "react";
+import { View, Text } from "react-native";
 
-type Props = NativeStackScreenProps<HomeStackParamList, 'Diagnose'>;
+type Props = {};
 
 const DiagnoseScreen: React.FC<Props> = () => {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Diagnose Screen (Coming Soon)</Text>
+      <Text>{TEXTS.COMING_SOON.DIAGNOSE}</Text>
     </View>
   );
 };

@@ -18,6 +18,7 @@ import { Category } from "../../types/category";
 import { Question } from "../../types/question";
 import styles from "./HomeScreen.styles";
 import { spacing } from "@/constants/theme";
+import { TEXTS } from "@/constants/text";
 
 export const HomeScreen: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -100,9 +101,9 @@ export const HomeScreen: React.FC = () => {
           </View>
         </View>
         <View style={styles.premiumTextContainer}>
-          <Text style={styles.premiumTitle}>FREE Premium Available</Text>
+          <Text style={styles.premiumTitle}>{TEXTS.HOME.PREMIUM_BANNER.TITLE}</Text>
           <Text style={styles.premiumSubtitle}>
-            Tap to upgrade your account!
+            {TEXTS.HOME.PREMIUM_BANNER.SUBTITLE}
           </Text>
         </View>
         <ChevronRightIcon />
@@ -110,7 +111,7 @@ export const HomeScreen: React.FC = () => {
 
       {/* Get Started / Questions Section */}
       <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>Get Started</Text>
+        <Text style={styles.sectionTitle}>{TEXTS.HOME.SECTIONS.GET_STARTED}</Text>
         {loading ? (
           <ActivityIndicator size="large" color="#0000ff" />
         ) : (

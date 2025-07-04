@@ -1,4 +1,5 @@
 import { PLAN_TYPES } from "@/constants/plan";
+import { TEXTS } from "@/constants/text";
 import { useAppDispatch } from "@/store";
 import { completeOnboarding } from "@/store/slices/onboardingSlice";
 import PrimaryButton from "@components/PrimaryButton/PrimaryButton";
@@ -81,9 +82,10 @@ const PaywallScreen: React.FC<
         ]}
       >
         <Text style={styles.title}>
-          <Text style={styles.titleBold}>PlantApp</Text> Premium
+          <Text style={styles.titleBold}>{TEXTS.WELCOME.APP_NAME}</Text>{" "}
+          {TEXTS.PAYWALL.TITLE}
         </Text>
-        <Text style={styles.subtitle}>Access All Features</Text>
+        <Text style={styles.subtitle}>{TEXTS.PAYWALL.SUBTITLE}</Text>
         <ScrollView
           horizontal
           style={styles.featuresRow}
@@ -91,46 +93,42 @@ const PaywallScreen: React.FC<
         >
           <FeatureCard
             icon={FEATURE_ICONS.scan}
-            title="Unlimited"
-            desc="Plant Identify"
+            title={TEXTS.PAYWALL.FEATURES.UNLIMITED}
+            desc={TEXTS.PAYWALL.FEATURES.UNLIMITED_DESC}
           />
           <FeatureCard
             icon={FEATURE_ICONS.speed}
-            title="Faster"
-            desc="Process"
+            title={TEXTS.PAYWALL.FEATURES.FASTER}
+            desc={TEXTS.PAYWALL.FEATURES.FASTER_DESC}
           />
           <FeatureCard
             icon={FEATURE_ICONS.care}
-            title="Detailed"
-            desc="Plant care"
+            title={TEXTS.PAYWALL.FEATURES.DETAILED}
+            desc={TEXTS.PAYWALL.FEATURES.DETAILED_DESC}
           />
         </ScrollView>
         <View style={styles.planBoxesContainer}>
           <PlanBox
             plan={PLAN_TYPES.MONTHLY as keyof typeof PLAN_TYPES}
-            title="1 Month"
-            desc="$2.99/month,"
-            activeDesc="auto renewable"
+            title={TEXTS.PAYWALL.PLANS.MONTHLY.TITLE}
+            desc={TEXTS.PAYWALL.PLANS.MONTHLY.PRICE}
+            activeDesc={TEXTS.PAYWALL.PLANS.MONTHLY.RENEWAL}
           />
           <PlanBox
             plan={PLAN_TYPES.YEARLY as keyof typeof PLAN_TYPES}
-            title="1 Year"
-            desc="First 3 days free,"
-            activeDesc="then $529,99/year"
+            title={TEXTS.PAYWALL.PLANS.YEARLY.TITLE}
+            desc={TEXTS.PAYWALL.PLANS.YEARLY.TRIAL}
+            activeDesc={TEXTS.PAYWALL.PLANS.YEARLY.PRICE}
           />
         </View>
-        <PrimaryButton label="Try free for 3 days" onPress={handleSubscribe} />
-        <Text style={styles.legalText}>
-          After the 3-day free trial period you'll be charged ₺274.99 per year
-          unless you cancel before the trial expires. Yearly Subscription is
-          Auto-Renewable
-        </Text>
+        <PrimaryButton label={TEXTS.PAYWALL.CTA} onPress={handleSubscribe} />
+        <Text style={styles.legalText}>{TEXTS.PAYWALL.LEGAL}</Text>
         <View style={styles.linksRow}>
-          <Text style={styles.link}>Terms</Text>
+          <Text style={styles.link}>{TEXTS.PAYWALL.LINKS.TERMS}</Text>
           <Text style={styles.linkDot}>•</Text>
-          <Text style={styles.link}>Privacy</Text>
+          <Text style={styles.link}>{TEXTS.PAYWALL.LINKS.PRIVACY}</Text>
           <Text style={styles.linkDot}>•</Text>
-          <Text style={styles.link}>Restore</Text>
+          <Text style={styles.link}>{TEXTS.PAYWALL.LINKS.RESTORE}</Text>
         </View>
       </View>
     </View>
