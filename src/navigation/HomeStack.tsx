@@ -1,4 +1,5 @@
 import { colors } from "@/constants/theme";
+import { useHomeIndex } from "@/hooks/useHomeIndex";
 import HomeHeader from "@/screens/Home/components/HomeHeader";
 import { HomeShimmer } from "@/screens/Home/components/HomeShimmer";
 import TabIcon from "@components/icons/TabIcon";
@@ -8,11 +9,8 @@ import DiagnoseScreen from "@screens/Diagnose/DiagnoseScreen";
 import HomeScreen from "@screens/Home/HomeScreen";
 import MyGardenScreen from "@screens/MyGarden/MyGardenScreen";
 import ProfileScreen from "@screens/Profile/ProfileScreen";
-import { useHomeIndex } from "hooks/useHomeIndex";
 import React from "react";
-import {
-  useSafeAreaInsets
-} from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export type HomeStackParamList = {
   HomeScreen: undefined;

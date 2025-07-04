@@ -4,6 +4,7 @@ import WelcomeScreen from '@screens/Onboarding/WelcomeScreen';
 import FeaturesScreen from '@screens/Onboarding/FeaturesScreen';
 import BenefitsScreen from '@screens/Onboarding/BenefitsScreen';
 import PaywallScreen from '@/screens/Paywall/PaywallScreen';
+import SearchScreen from '@/screens/Search/SearchScreen';
 
 export type OnboardingStackParamList = {
   Welcome: undefined;

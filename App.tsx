@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { styles } from "App.styles";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
-import { useAppPreparation } from "hooks/useAppPreparation";
+import { useAppPreparation } from "@/hooks/useAppPreparation";
 import React from "react";
 import { View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";

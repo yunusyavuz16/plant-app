@@ -1,8 +1,8 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { useAppSelector } from "../store";
-import HomeStack from "./HomeStack";
 import OnboardingStack from "./OnboardingStack";
+import PrivateAppStack from "./PrivateAppStack";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,7 +18,7 @@ const RootNavigator = () => {
       {!onboardingComplete ? (
         <Stack.Screen name="OnboardingStack" component={OnboardingStack} />
       ) : (
-        <Stack.Screen name="HomeStack" component={HomeStack} />
+        <Stack.Screen name="PrivateAppStack" component={PrivateAppStack} />
       )}
     </Stack.Navigator>
   );

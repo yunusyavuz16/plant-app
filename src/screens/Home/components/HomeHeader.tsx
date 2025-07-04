@@ -1,12 +1,19 @@
 import SearchIcon from "@components/icons/SearchIcon";
 import { TEXTS } from "@/constants/text";
 import React, { useMemo } from "react";
-import { ImageBackground, Text, TextInput, View } from "react-native";
+import { ImageBackground, Text, TextInput, View, Pressable } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import styles from "../HomeScreen.styles";
+import { useNavigation } from "@react-navigation/native";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { setIsSearching, setSearchQuery } from "@/store/slices/searchSlice";
 
 const HomeHeader = () => {
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation();
+  const dispatch = useAppDispatch();
+  const { query } = useAppSelector((state) => state.search);
+
   // Greeting helper
   const greeting = useMemo(() => {
     const hour = new Date().getHours();
@@ -14,6 +21,16 @@ const HomeHeader = () => {
     if (hour < 17) return { text: TEXTS.HOME.GREETING.AFTERNOON, emoji: "⛅" };
     return { text: TEXTS.HOME.GREETING.EVENING, emoji: "🌙" };
   }, []);
+
+  const handleSearchFocus = () => {
+    dispatch(setIsSearching(true));
+    navigation.navigate('Search' as never);
+  };
+
+  const handleSearchChange = (text: string) => {
+    dispatch(setSearchQuery(text));
+  };
+
   return (
     <ImageBackground source={require("../../../../assets/home/Background.png")}>
       <View style={[styles.header, { paddingTop: insets.top }]}>
@@ -24,14 +41,17 @@ const HomeHeader = () => {
       </View>
       {/* Search */}
       <View style={styles.searchContainer}>
-        <View style={styles.searchInputContainer}>
+        <Pressable style={styles.searchInputContainer} onPress={handleSearchFocus}>
           <SearchIcon />
           <TextInput
             style={styles.searchInput}
             placeholder={TEXTS.HOME.SEARCH_PLACEHOLDER}
             placeholderTextColor="#AFAFAF"
+            value={query}
+            onChangeText={handleSearchChange}
+            onFocus={handleSearchFocus}
           />
-        </View>
+        </Pressable>
       </View>
     </ImageBackground>
   );
