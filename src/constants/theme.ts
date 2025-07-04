@@ -13,6 +13,7 @@ export const colors = {
     lightGreen: '#F4F6F6',
     darkBrown: '#24201A',
     lightGreen2: '#5DCB97',
+    splash: '#FFFFFF', // Add splash screen background color
   },
 
   // Text Colors

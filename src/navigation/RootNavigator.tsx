@@ -1,35 +1,26 @@
-import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../store";
-import { checkOnboardingStatus } from "../store/slices/onboardingSlice";
+import React from "react";
+import { useAppSelector } from "../store";
 import HomeStack from "./HomeStack";
 import OnboardingStack from "./OnboardingStack";
 
 const Stack = createNativeStackNavigator();
 
-const RootNavigator: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const { completed, loading } = useAppSelector((state) => state.onboarding);
-
-  useEffect(() => {
-    dispatch(checkOnboardingStatus());
-  }, []);
-
-  if (loading) {
-    return null; // Or a loading screen
-  }
+/**
+ * Root navigator that handles switching between onboarding and main app flows
+ * based on whether onboarding has been completed.
+ */
+const RootNavigator = () => {
+  const { onboardingComplete } = useAppSelector((state) => state.onboarding);
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {!completed ? (
-          <Stack.Screen name="Onboarding" component={OnboardingStack} />
-        ) : (
-          <Stack.Screen name="Home" component={HomeStack} />
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      {!onboardingComplete ? (
+        <Stack.Screen name="OnboardingStack" component={OnboardingStack} />
+      ) : (
+        <Stack.Screen name="HomeStack" component={HomeStack} />
+      )}
+    </Stack.Navigator>
   );
 };
 

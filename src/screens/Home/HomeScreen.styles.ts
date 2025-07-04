@@ -148,7 +148,8 @@ export default StyleSheet.create({
   },
   categoryCard: {
     flex: 1,
-    padding: spacing.lg,
+    paddingStart: spacing.lg,
+    paddingTop: spacing.lg,
     borderRadius: layout.radius.lg,
     backgroundColor: colors.background.lightGreen,
     borderWidth: 1,

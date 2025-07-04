@@ -1,67 +1,34 @@
-import { useFonts } from "expo-font";
+import { NavigationContainer } from "@react-navigation/native";
+import { styles } from "App.styles";
+import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
-import * as React from "react";
+import { useAppFonts } from "hooks/useFonts";
+import React from "react";
+import { View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
 import RootNavigator from "./src/navigation/RootNavigator";
 import { store } from "./src/store";
-import { View, Text, Platform } from "react-native";
+
+// Keep splash screen visible while we fetch resources
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  const [loaded, error] = useFonts({
-    Rubik: Platform.select({
-      ios: require("./assets/fonts/Rubik-Regular.ttf"),
-      android: require("./assets/fonts/Rubik-Regular.ttf"),
-    }),
-    SFProText: Platform.select({
-      ios: require("./assets/fonts/SFProText-Regular.ttf"),
-      android: require("./assets/fonts/SFProText-Regular.ttf"),
-    }),
-    "Rubik-SemiBold": Platform.select({
-      ios: require("./assets/fonts/Rubik-SemiBold.ttf"),
-      android: require("./assets/fonts/Rubik-SemiBold.ttf"),
-    }),
-    "SFProText-Bold": Platform.select({
-      ios: require("./assets/fonts/SFProText-Bold.ttf"),
-      android: require("./assets/fonts/SFProText-Bold.ttf"),
-    }),
-    "Rubik-ExtraBold": Platform.select({
-      ios: require("./assets/fonts/Rubik-ExtraBold.ttf"),
-      android: require("./assets/fonts/Rubik-ExtraBold.ttf"),
-    }),
-    "Rubik-Medium": Platform.select({
-      ios: require("./assets/fonts/Rubik-Medium.ttf"),
-      android: require("./assets/fonts/Rubik-Medium.ttf"),
-    }),
-    "Rubik-Light": Platform.select({
-      ios: require("./assets/fonts/Rubik-Light.ttf"),
-      android: require("./assets/fonts/Rubik-Light.ttf"),
-    }),
-    "Rubik-Regular": Platform.select({
-      ios: require("./assets/fonts/Rubik-Regular.ttf"),
-      android: require("./assets/fonts/Rubik-Regular.ttf"),
-    }),
-  });
-
-  React.useEffect(() => {
-    if (Platform.OS === "android") {
-      console.log("Android font loading status:", { loaded, error });
-    }
-  }, [loaded, error]);
+  const { onLayoutRootView, loaded } = useAppFonts();
 
   if (!loaded) {
-    return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text>Loading fonts...</Text>
-      </View>
-    );
+    return null;
   }
 
   return (
     <Provider store={store}>
       <SafeAreaProvider>
-        <StatusBar style="auto" />
-        <RootNavigator />
+        <View style={styles.container} onLayout={onLayoutRootView}>
+          <NavigationContainer>
+            <RootNavigator />
+          </NavigationContainer>
+          <StatusBar style="auto" />
+        </View>
       </SafeAreaProvider>
     </Provider>
   );
