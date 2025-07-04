@@ -1,12 +1,12 @@
+import { useAppPreparation } from "@/hooks/useAppPreparation";
 import { NavigationContainer } from "@react-navigation/native";
 import { styles } from "App.styles";
 import * as SplashScreen from "expo-splash-screen";
-import { StatusBar } from "expo-status-bar";
-import { useAppPreparation } from "@/hooks/useAppPreparation";
 import React from "react";
 import { View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
+import ErrorBoundary from "./src/components/ErrorBoundary/ErrorBoundary";
 import RootNavigator from "./src/navigation/RootNavigator";
 import { store } from "./src/store";
 
@@ -21,14 +21,16 @@ export default function App() {
   }
 
   return (
-    <Provider store={store}>
-      <SafeAreaProvider>
-        <View style={styles.container} onLayout={onLayoutRootView}>
-          <NavigationContainer>
-            <RootNavigator />
-          </NavigationContainer>
-        </View>
-      </SafeAreaProvider>
-    </Provider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <SafeAreaProvider>
+          <View style={styles.container} onLayout={onLayoutRootView}>
+            <NavigationContainer>
+              <RootNavigator />
+            </NavigationContainer>
+          </View>
+        </SafeAreaProvider>
+      </Provider>
+    </ErrorBoundary>
   );
 }
