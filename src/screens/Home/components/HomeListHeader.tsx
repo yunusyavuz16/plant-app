@@ -1,7 +1,7 @@
 import { TEXTS } from "@/constants/text";
 import { useAppSelector } from "@/store";
 import React, { memo } from "react";
-import { ActivityIndicator, FlatList, Text, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import styles from "../HomeScreen.styles";
 import HomePremiumBanner from "./HomePremiumBanner";
 import HomeQuestionItem from "./HomeQuestionItem";

@@ -18,8 +18,8 @@ export const HomeScreen: React.FC = () => {
           <HomeCategoryItem title={item.title} url={item.image.url} />
         )}
         numColumns={2}
-        columnWrapperStyle={{ gap: 8, marginHorizontal: spacing.xxl }}
-        contentContainerStyle={{ gap: 16 }}
+        columnWrapperStyle={styles.columnWrapper}
+        contentContainerStyle={styles.contentContainer}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={HomeListHeader}
       />

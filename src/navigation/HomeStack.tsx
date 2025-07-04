@@ -1,3 +1,4 @@
+import { colors } from "@/constants/theme";
 import HomeHeader from "@/screens/Home/components/HomeHeader";
 import { HomeShimmer } from "@/screens/Home/components/HomeShimmer";
 import TabIcon from "@components/icons/TabIcon";
@@ -9,7 +10,10 @@ import MyGardenScreen from "@screens/MyGarden/MyGardenScreen";
 import ProfileScreen from "@screens/Profile/ProfileScreen";
 import { useHomeIndex } from "hooks/useHomeIndex";
 import React from "react";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 export type HomeStackParamList = {
   HomeScreen: undefined;
@@ -38,12 +42,12 @@ const HomeStack: React.FC = () => {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: "#FFFFFF",
+          backgroundColor: colors.background.white + "92",
+          paddingBottom: 0,
           borderTopWidth: 0,
           elevation: 0,
           shadowOpacity: 0,
-          height: 72 + insets.bottom,
-          paddingTop: 12,
+          height: 49 + insets.bottom,
           bottom: 0,
         },
         tabBarActiveTintColor: "#28AF6E",

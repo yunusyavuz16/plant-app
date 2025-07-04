@@ -2,6 +2,14 @@ import { StyleSheet } from "react-native";
 import { colors, layout, spacing, typography } from "../../constants/theme";
 
 export default StyleSheet.create({
+  contentContainer: {
+    gap: spacing.md,
+    paddingBottom: spacing.xxl,
+  },
+  columnWrapper: {
+    gap: spacing.md,
+    marginHorizontal: spacing.xxl,
+  },
   innerContainer: {},
   container: {
     flex: 1,

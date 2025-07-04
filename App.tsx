@@ -27,7 +27,6 @@ export default function App() {
           <NavigationContainer>
             <RootNavigator />
           </NavigationContainer>
-          <StatusBar style="auto" />
         </View>
       </SafeAreaProvider>
     </Provider>
