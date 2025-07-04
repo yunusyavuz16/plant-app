@@ -145,19 +145,18 @@ export default StyleSheet.create({
   },
   planTitle: {
     color: colors.text.white,
-    fontWeight: "700",
+    fontFamily: typography.fonts.RubikMedium,
     fontSize: typography.size.lg,
     marginBottom: spacing.xs - 2,
   },
   planDesc: {
-    color: colors.text.gray,
+    color: colors.text.lightWhite,
     fontSize: typography.size.base,
-    fontWeight: "400",
+    fontFamily: typography.fonts.RubikRegular,
   },
   planDescDim: {
-    color: colors.text.darkGray,
     fontSize: typography.size.base,
-    fontWeight: "400",
+    fontFamily: typography.fonts.RubikMedium,
   },
   saveBadge: {
     position: "absolute",
