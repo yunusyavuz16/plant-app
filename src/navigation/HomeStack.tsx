@@ -11,8 +11,7 @@ import ProfileScreen from "@screens/Profile/ProfileScreen";
 import { useHomeIndex } from "hooks/useHomeIndex";
 import React from "react";
 import {
-  SafeAreaView,
-  useSafeAreaInsets,
+  useSafeAreaInsets
 } from "react-native-safe-area-context";
 
 export type HomeStackParamList = {
