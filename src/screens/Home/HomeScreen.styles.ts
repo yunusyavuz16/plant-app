@@ -1,6 +1,4 @@
-import { Dimensions, StyleSheet } from "react-native";
-
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
@@ -133,19 +131,21 @@ export default StyleSheet.create({
     marginLeft: 16,
   },
   categoriesContainer: {
-    paddingHorizontal: 24,
+    paddingLeft: 24,
+    paddingRight: 13,
     marginBottom: 24,
   },
   categoriesGrid: {
     paddingBottom: 16,
+    gap: 12,
   },
   questionsGridContent: {
     flexDirection: "row",
-    gap: 8,
+    gap: 10,
   },
   categoryCard: {
     flex: 1,
-    margin: 8,
+    marginRight: 11,
     padding: 16,
     borderRadius: 12,
     backgroundColor: "#F4F6F6",
