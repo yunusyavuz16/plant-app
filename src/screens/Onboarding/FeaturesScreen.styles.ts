@@ -1,7 +1,5 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet } from "react-native";
 import { colors, layout, spacing, typography } from "../../constants/theme";
-
-const { width, height } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   backgroundImage: {
@@ -24,11 +22,11 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   titleHighlight: {
-    fontWeight: '900',
+    fontFamily: typography.fonts.RubikExtraBold,
   },
   title: {
     fontSize: typography.size.display,
-    fontWeight: '700',
+    fontFamily: typography.fonts.RubikMedium,
     color: colors.text.primary,
     lineHeight: typography.lineHeight.lg,
   },

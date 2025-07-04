@@ -24,13 +24,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: typography.size.display,
-    fontWeight: '600',
+    fontFamily: typography.fonts.RubikMedium,
     color: colors.text.primary,
     lineHeight: typography.lineHeight.lg,
     ...mixins.shadow.textShadow,
   },
   titleHighlight: {
-    fontWeight: '900',
+    fontFamily: typography.fonts.RubikExtraBold,
     color: colors.text.primary,
   },
   brushImage: {
