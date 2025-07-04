@@ -3,10 +3,11 @@ import { TEXTS } from "@/constants/text";
 import { OnboardingStackParamList } from "@navigation/OnboardingStack";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
-import { Image, Text, View } from "react-native";
+import { View } from "react-native";
 import styles from "./BenefitsScreen.styles";
 import OnBoardLayout from "./components/OnBoardLayout";
 import OnboardingAction from "./components/OnboardingAction";
+import OnboardingHeader from "./components/OnboardingHeader";
 import OnboardingMiddleImage from "./components/OnboardingMiddleImage";
 import OnboardingPagination from "./components/OnboardingPagination";
 
@@ -20,18 +21,9 @@ const BenefitsScreen: React.FC<
     <OnBoardLayout
       screenName={OnboardingScreens.BENEFITS as OnboardingScreenKeyType}
     >
-      <View style={styles.header}>
-        <View style={styles.titleRow}>
-          <Text style={styles.title}>
-            Get plant <Text style={styles.titleHighlight}>care guides</Text>
-          </Text>
-          <Image
-            source={require("../../../assets/onboarding-2/Brush.png")}
-            style={styles.brushImage}
-            resizeMode="contain"
-          />
-        </View>
-      </View>
+      <OnboardingHeader
+        screenName={OnboardingScreens.BENEFITS as OnboardingScreenKeyType}
+      />
       <OnboardingMiddleImage
         screenName={OnboardingScreens.BENEFITS as OnboardingScreenKeyType}
         imageStyle={styles.image}

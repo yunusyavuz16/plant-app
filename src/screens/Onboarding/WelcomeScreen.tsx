@@ -3,10 +3,12 @@ import { TEXTS } from "@/constants/text";
 import { OnboardingStackParamList } from "@navigation/OnboardingStack";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import styles from "./WelcomeScreen.styles";
 import OnBoardLayout from "./components/OnBoardLayout";
 import OnboardingAction from "./components/OnboardingAction";
+import OnboardingDisclaimer from "./components/OnboardingDisclaimer";
+import OnboardingHeader from "./components/OnboardingHeader";
 import OnboardingMiddleImage from "./components/OnboardingMiddleImage";
 
 /**
@@ -20,13 +22,12 @@ const WelcomeScreen: React.FC<
       screenName={OnboardingScreens.WELCOME as OnboardingScreenKeyType}
     >
       {/* Header Start */}
-      <View style={styles.header}>
-        <Text style={styles.title}>
-          {TEXTS.WELCOME.TITLE}{" "}
-          <Text style={styles.titleHighlight}>{TEXTS.WELCOME.APP_NAME}</Text>
-        </Text>
-        <Text style={styles.subtitle}>{TEXTS.WELCOME.SUBTITLE}</Text>
-      </View>
+      <OnboardingHeader
+        screenName={OnboardingScreens.WELCOME as OnboardingScreenKeyType}
+        title={TEXTS.WELCOME.TITLE}
+        titleHighlight={TEXTS.WELCOME.APP_NAME}
+        description={TEXTS.WELCOME.SUBTITLE}
+      />
       {/* Header End */}
 
       {/* Image Start */}
@@ -44,14 +45,7 @@ const WelcomeScreen: React.FC<
           screenName={OnboardingScreens.FEATURES as OnboardingScreenKeyType}
         />
 
-        <View style={styles.bottomInner}>
-          <Text style={styles.disclaimer}>
-            {TEXTS.WELCOME.DISCLAIMER}
-            {"\n"}
-            <Text style={styles.link}>{TEXTS.WELCOME.TERMS}</Text> &{" "}
-            <Text style={styles.link}>{TEXTS.WELCOME.PRIVACY}</Text>.
-          </Text>
-        </View>
+        <OnboardingDisclaimer />
       </View>
       {/* Bottom End */}
     </OnBoardLayout>

@@ -3,10 +3,11 @@ import { TEXTS } from "@/constants/text";
 import { OnboardingStackParamList } from "@navigation/OnboardingStack";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
-import { Image, Text, View } from "react-native";
+import { View } from "react-native";
 import styles from "./FeaturesScreen.styles";
 import OnBoardLayout from "./components/OnBoardLayout";
 import OnboardingAction from "./components/OnboardingAction";
+import OnboardingHeader from "./components/OnboardingHeader";
 import OnboardingMiddleImage from "./components/OnboardingMiddleImage";
 import OnboardingPagination from "./components/OnboardingPagination";
 
@@ -21,22 +22,9 @@ const FeaturesScreen: React.FC<
     <OnBoardLayout
       screenName={OnboardingScreens.FEATURES as OnboardingScreenKeyType}
     >
-      <View style={styles.header}>
-        <View style={styles.titleContainer}>
-          <View style={styles.titleRow}>
-            <Text style={styles.title}>
-              Take a photo to{" "}
-              <Text style={styles.titleHighlight}>identify</Text>
-            </Text>
-            <Image
-              source={require("../../../assets/onboarding-1/Brush.png")}
-              style={styles.brushImage}
-              resizeMode="contain"
-            />
-          </View>
-          <Text style={styles.title}>the plant!</Text>
-        </View>
-      </View>
+      <OnboardingHeader
+        screenName={OnboardingScreens.FEATURES as OnboardingScreenKeyType}
+      />
 
       <OnboardingMiddleImage
         screenName={OnboardingScreens.FEATURES as OnboardingScreenKeyType}

@@ -13,9 +13,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.xxl,
     marginBottom: spacing.xl,
   },
-  titleContainer: {
-    alignItems: "flex-start",
-  },
+
   titleRow: {
     flexDirection: "row",
     alignItems: "flex-end",
