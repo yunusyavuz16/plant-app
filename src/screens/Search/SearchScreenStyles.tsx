@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
   },
   listContent: {
     padding: spacing.lg,
+    gap: spacing.lg,
   },
   emptyContainer: {
     flex: 1,

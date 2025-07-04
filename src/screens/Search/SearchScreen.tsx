@@ -17,7 +17,7 @@ const SearchScreen = () => {
   const { query } = useAppSelector((state) => state.search);
 
   const filteredCategories = useMemo(() => {
-    if (!query.trim()) return [];
+    if (!query.trim()) return categories;
 
     return categories.filter((category) =>
       category.name.toLowerCase().includes(query.toLowerCase())
