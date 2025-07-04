@@ -1,5 +1,7 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import { colors, spacing, typography } from "../../constants/theme";
+
+const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   imageContainer: {
@@ -16,8 +18,8 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    width: "100%",
-    height: "100%",
+    height: height,
+    width: width,
   },
   container: {
     flex: 1,

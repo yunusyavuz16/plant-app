@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
-import { store } from './src/store';
 import RootNavigator from './src/navigation/RootNavigator';
+import { store } from './src/store';
 
 export default function App() {
   return (
