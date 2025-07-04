@@ -1,11 +1,12 @@
-import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from '../screens/Home/HomeScreen';
-import DiagnoseScreen from '../screens/Diagnose/DiagnoseScreen';
-import CameraScreen from '../screens/Camera/CameraScreen';
-import MyGardenScreen from '../screens/MyGarden/MyGardenScreen';
-import ProfileScreen from '../screens/Profile/ProfileScreen';
-import TabIcon from '../components/icons/TabIcon';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import HomeHeader from "@screens/Home/HomeHeader";
+import React from "react";
+import TabIcon from "@components/icons/TabIcon";
+import CameraScreen from "@screens/Camera/CameraScreen";
+import DiagnoseScreen from "@screens/Diagnose/DiagnoseScreen";
+import HomeScreen from "@screens/Home/HomeScreen";
+import MyGardenScreen from "@screens/MyGarden/MyGardenScreen";
+import ProfileScreen from "@screens/Profile/ProfileScreen";
 
 export type HomeStackParamList = {
   HomeScreen: undefined;
@@ -26,7 +27,7 @@ const HomeStack: React.FC = () => {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: '#FFFFFF',
+          backgroundColor: "#FFFFFF",
           borderTopWidth: 0,
           elevation: 0,
           shadowOpacity: 0,
@@ -34,11 +35,11 @@ const HomeStack: React.FC = () => {
           paddingBottom: 20,
           paddingTop: 12,
         },
-        tabBarActiveTintColor: '#28AF6E',
-        tabBarInactiveTintColor: '#979798',
+        tabBarActiveTintColor: "#28AF6E",
+        tabBarInactiveTintColor: "#979798",
         tabBarLabelStyle: {
           fontSize: 11,
-          fontWeight: '500',
+          fontWeight: "500",
         },
       }}
     >
@@ -46,7 +47,10 @@ const HomeStack: React.FC = () => {
         name="HomeScreen"
         component={HomeScreen}
         options={{
-          tabBarLabel: 'Home',
+          headerShown: true,
+          header: () => <HomeHeader />,
+
+          tabBarLabel: "Home",
           tabBarIcon: ({ color }) => <TabIcon name="home" color={color} />,
         }}
       />
@@ -54,7 +58,7 @@ const HomeStack: React.FC = () => {
         name="Diagnose"
         component={DiagnoseScreen}
         options={{
-          tabBarLabel: 'Diagnose',
+          tabBarLabel: "Diagnose",
           tabBarIcon: ({ color }) => <TabIcon name="diagnose" color={color} />,
         }}
       />
@@ -62,7 +66,7 @@ const HomeStack: React.FC = () => {
         name="Camera"
         component={CameraScreen}
         options={{
-          tabBarLabel: '',
+          tabBarLabel: "",
           tabBarIcon: () => <TabIcon name="camera" color="white" size={64} />,
         }}
       />
@@ -70,7 +74,7 @@ const HomeStack: React.FC = () => {
         name="MyGarden"
         component={MyGardenScreen}
         options={{
-          tabBarLabel: 'My Garden',
+          tabBarLabel: "My Garden",
           tabBarIcon: ({ color }) => <TabIcon name="garden" color={color} />,
         }}
       />
@@ -78,7 +82,7 @@ const HomeStack: React.FC = () => {
         name="Profile"
         component={ProfileScreen}
         options={{
-          tabBarLabel: 'Profile',
+          tabBarLabel: "Profile",
           tabBarIcon: ({ color }) => <TabIcon name="profile" color={color} />,
         }}
       />

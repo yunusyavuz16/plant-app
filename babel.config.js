@@ -1,15 +1,27 @@
 module.exports = function (api) {
   api.cache(true);
   return {
-    presets: ["babel-preset-expo"],
+    presets: ['babel-preset-expo'],
     plugins: [
       [
-        "module-resolver",
+        'module-resolver',
         {
-          extensions: [".tsx", ".ts", ".js", ".json"],
-        },
+          root: ['./src'],
+          extensions: ['.ios.js', '.android.js', '.js', '.ts', '.tsx', '.json'],
+          alias: {
+            '@': './src',
+            '@screens': './src/screens',
+            '@components': './src/components',
+            '@navigation': './src/navigation',
+            '@services': './src/services',
+            '@context': './src/context',
+            '@types': './src/types',
+            '@hooks': './src/hooks',
+            '@assets': './assets'
+          }
+        }
       ],
-      "react-native-reanimated/plugin",
-    ],
+      'react-native-reanimated/plugin'
+    ]
   };
 };

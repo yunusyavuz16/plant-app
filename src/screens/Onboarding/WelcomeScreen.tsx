@@ -1,9 +1,9 @@
+import PrimaryButton from "@components/PrimaryButton/PrimaryButton";
+import { OnboardingStackParamList } from "@navigation/OnboardingStack";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
-import { Image, ImageBackground, SafeAreaView, Text, View } from "react-native";
+import { Image, ImageBackground, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
-import { OnboardingStackParamList } from "../../navigation/OnboardingStack";
 import styles from "./WelcomeScreen.styles";
 
 /**

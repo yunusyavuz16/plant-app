@@ -1,18 +1,18 @@
+import PrimaryButton from "@components/PrimaryButton/PrimaryButton";
+import { useOnboarding } from "@context/OnboardingContext";
+import { OnboardingStackParamList } from "@navigation/OnboardingStack";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
 import {
-  View,
-  Text,
+  Dimensions,
   Image,
   ImageBackground,
-  TouchableOpacity,
-  Dimensions,
   ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { OnboardingStackParamList } from "../../navigation/OnboardingStack";
-import { useOnboarding } from "../../context/OnboardingContext";
-import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
 import styles from "./PaywallScreen.styles";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");

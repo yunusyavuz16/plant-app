@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { HomeStackParamList } from '../../navigation/HomeStack';
+import { HomeStackParamList } from '@navigation/HomeStack';
 
 type Props = NativeStackScreenProps<HomeStackParamList, 'Profile'>;
 

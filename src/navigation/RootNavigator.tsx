@@ -2,7 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import OnboardingStack from './OnboardingStack';
 import HomeStack from './HomeStack';
-import { useOnboarding } from '../context/OnboardingContext';
+import { useOnboarding } from '@context/OnboardingContext';
 
 export type RootStackParamList = {
   Onboarding: undefined;

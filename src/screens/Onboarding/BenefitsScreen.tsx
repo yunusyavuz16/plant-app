@@ -1,16 +1,16 @@
-import React from 'react';
-import { View, Text, Image, ImageBackground } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { OnboardingStackParamList } from '../../navigation/OnboardingStack';
-import PrimaryButton from '../../components/PrimaryButton/PrimaryButton';
-import styles from './BenefitsScreen.styles';
+import PrimaryButton from "@components/PrimaryButton/PrimaryButton";
+import { OnboardingStackParamList } from "@navigation/OnboardingStack";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import React from "react";
+import { Image, ImageBackground, Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import styles from "./BenefitsScreen.styles";
 
 /**
  * Onboarding 2: Get plant care guides
  */
 const BenefitsScreen: React.FC<
-  NativeStackScreenProps<OnboardingStackParamList, 'Benefits'>
+  NativeStackScreenProps<OnboardingStackParamList, "Benefits">
 > = ({ navigation }) => {
   const insets = useSafeAreaInsets();
 
@@ -18,12 +18,12 @@ const BenefitsScreen: React.FC<
    * Navigate to the next onboarding step.
    */
   const handleContinue = () => {
-    navigation.navigate('Paywall');
+    navigation.navigate("Paywall");
   };
 
   return (
     <ImageBackground
-      source={require('../../../assets/onboarding-2/Background.png')}
+      source={require("../../../assets/onboarding-2/Background.png")}
       style={[
         styles.backgroundImage,
         { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 12 },
@@ -37,7 +37,7 @@ const BenefitsScreen: React.FC<
               Get plant <Text style={styles.titleHighlight}>care guides</Text>
             </Text>
             <Image
-              source={require('../../../assets/onboarding-2/Brush.png')}
+              source={require("../../../assets/onboarding-2/Brush.png")}
               style={styles.brushImage}
               resizeMode="contain"
             />
@@ -45,7 +45,7 @@ const BenefitsScreen: React.FC<
         </View>
         <View style={styles.imageContainer}>
           <Image
-            source={require('../../../assets/onboarding-2/onboarding-2-middle.png')}
+            source={require("../../../assets/onboarding-2/onboarding-2-middle.png")}
             style={styles.image}
           />
         </View>

@@ -2,8 +2,8 @@ import React from "react";
 import { View, Text, Image, ImageBackground } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { OnboardingStackParamList } from "../../navigation/OnboardingStack";
-import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
+import { OnboardingStackParamList } from "@navigation/OnboardingStack";
+import PrimaryButton from "@components/PrimaryButton/PrimaryButton";
 import styles from "./FeaturesScreen.styles";
 
 /**

@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { enableScreens } from 'react-native-screens';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { OnboardingProvider } from './src/context/OnboardingContext';
-import RootNavigator from './src/navigation/RootNavigator';
+import { OnboardingProvider } from "@context/OnboardingContext";
+import RootNavigator from "@navigation/RootNavigator";
+import { NavigationContainer } from "@react-navigation/native";
+import React from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { enableScreens } from "react-native-screens";
 
 // Enable native screens and reanimated
 enableScreens(true);
