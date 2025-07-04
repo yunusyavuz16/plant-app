@@ -102,6 +102,13 @@ export default StyleSheet.create({
     fontFamily: typography.fonts.RubikRegular,
     color: colors.text.lightWhite,
   },
+  planBoxContainer: {
+    width: "100%",
+  },
+  planBoxesContainer: {
+    width: "100%",
+    marginBottom: spacing.xxl,
+  },
   planBox: {
     width: "100%",
     borderRadius: layout.radius.xxl,
@@ -114,7 +121,6 @@ export default StyleSheet.create({
   planBoxActive: {
     borderColor: colors.primary.green,
     backgroundColor: colors.overlay.green,
-    marginBottom: spacing.xxl,
   },
   planRow: {
     flexDirection: "row",
@@ -151,12 +157,12 @@ export default StyleSheet.create({
   },
   planDesc: {
     color: colors.text.lightWhite,
-    fontSize: typography.size.base,
-    fontFamily: typography.fonts.RubikRegular,
+    fontSize: typography.size.smBold,
+    fontFamily: typography.fonts.RubikLight,
   },
   planDescDim: {
-    fontSize: typography.size.base,
-    fontFamily: typography.fonts.RubikMedium,
+    color: colors.text.lightWhite,
+    fontFamily: typography.fonts.RubikRegular,
   },
   saveBadge: {
     position: "absolute",
@@ -173,14 +179,16 @@ export default StyleSheet.create({
   },
   saveBadgeText: {
     color: colors.text.white,
-    fontWeight: "700",
     fontSize: typography.size.base,
+    fontFamily: typography.fonts.RubikMedium,
   },
   legalText: {
-    color: colors.overlay.darkTransparent,
+    color: colors.text.extraLightWhite,
     fontSize: typography.size.xs,
     textAlign: "center",
     marginTop: spacing.sm,
+    fontFamily: typography.fonts.RubikLight,
+    lineHeight: typography.size.xs * 1.32,
     marginBottom: spacing.md,
   },
   linksRow: {
@@ -190,16 +198,16 @@ export default StyleSheet.create({
     alignItems: "center",
   },
   link: {
-    color: colors.overlay.darkTransparent,
+    color: colors.text.extraLightWhite2,
+    fontFamily: typography.fonts.RubikLight,
     fontSize: typography.size.sm,
-    fontWeight: "500",
     marginHorizontal: spacing.xs + 2,
     textDecorationLine: "underline",
   },
   linkDot: {
-    color: colors.overlay.darkTransparent,
+    color: colors.text.extraLightWhite2,
     fontSize: typography.size.sm,
-    fontWeight: "500",
+    fontFamily: typography.fonts.RubikMedium,
     marginHorizontal: 0,
   },
 });

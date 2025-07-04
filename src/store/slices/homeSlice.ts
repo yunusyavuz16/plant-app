@@ -1,8 +1,8 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { categoryService } from '../../services/categoryService';
-import { questionService } from '../../services/questionService';
-import { Category } from '../../types/category';
-import { Question } from '../../types/question';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { categoryService } from "../../services/categoryService";
+import { questionService } from "../../services/questionService";
+import { Category } from "../../types/category";
+import { Question } from "../../types/question";
 
 interface HomeState {
   categories: Category[];
@@ -19,7 +19,7 @@ const initialState: HomeState = {
 };
 
 export const fetchHomeData = createAsyncThunk(
-  'home/fetchData',
+  "home/fetchData",
   async (_, { rejectWithValue }) => {
     try {
       const [categoriesRes, questionsRes] = await Promise.all([
@@ -28,17 +28,17 @@ export const fetchHomeData = createAsyncThunk(
       ]);
 
       return {
-        categories: categoriesRes.data.sort((a, b) => a.rank - b.rank),
+        categories: categoriesRes.data,
         questions: questionsRes,
       };
     } catch (error) {
-      return rejectWithValue('Failed to fetch home data');
+      return rejectWithValue("Failed to fetch home data");
     }
   }
 );
 
 const homeSlice = createSlice({
-  name: 'home',
+  name: "home",
   initialState,
   reducers: {},
   extraReducers: (builder) => {

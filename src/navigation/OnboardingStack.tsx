@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import WelcomeScreen from '@screens/Onboarding/WelcomeScreen';
 import FeaturesScreen from '@screens/Onboarding/FeaturesScreen';
 import BenefitsScreen from '@screens/Onboarding/BenefitsScreen';
-import PaywallScreen from '@screens/Onboarding/PaywallScreen';
+import PaywallScreen from '@/screens/Paywall/PaywallScreen';
 
 export type OnboardingStackParamList = {
   Welcome: undefined;

@@ -1,3 +1,4 @@
+import { PLAN_TYPES } from "@/constants/plan";
 import { useAppDispatch } from "@/store";
 import { completeOnboarding } from "@/store/slices/onboardingSlice";
 import PrimaryButton from "@components/PrimaryButton/PrimaryButton";
@@ -6,7 +7,6 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
 import {
   Dimensions,
-  Image,
   ImageBackground,
   ScrollView,
   Text,
@@ -14,33 +14,13 @@ import {
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import styles from "../Paywall/PaywallScreen.styles";
+import styles from "./PaywallScreen.styles";
+import FeatureCard from "./components/FeatureCard";
+import PlanBox from "./components/PlanBox";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 const CONST_HEIGHT_CONTENT = 600;
 
-const FeatureCard = ({
-  icon,
-  title,
-  desc,
-}: {
-  icon: any;
-  title: string;
-  desc: string;
-}) => {
-  return (
-    <View style={styles.featureCard}>
-      <Image
-        source={icon}
-        style={styles.featureIconImage}
-        resizeMode="contain"
-      />
-      <Text style={styles.featureTitle}>{title}</Text>
-      <Text style={styles.featureDesc}>{desc}</Text>
-    </View>
-  );
-};
-// Feature card icons
 const FEATURE_ICONS = {
   scan: require("../../../assets/paywall/unlimited-icon.png"),
   speed: require("../../../assets/paywall/speed-icon.png"),
@@ -125,34 +105,19 @@ const PaywallScreen: React.FC<
             desc="Plant care"
           />
         </ScrollView>
-        <View style={styles.planBox}>
-          <View style={styles.planRow}>
-            <View style={styles.radio} />
-            <View style={styles.planTextBox}>
-              <Text style={styles.planTitle}>1 Month</Text>
-              <Text style={styles.planDesc}>
-                $2.99/month,{" "}
-                <Text style={styles.planDescDim}>auto renewable</Text>
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View style={[styles.planBox, styles.planBoxActive]}>
-          <View style={styles.saveBadge}>
-            <Text style={styles.saveBadgeText}>Save 50%</Text>
-          </View>
-          <View style={styles.planRow}>
-            <View style={[styles.radio, styles.radioActive]}>
-              {/* white circle */}
-              <View style={styles.radioCircle} />
-            </View>
-            <View style={styles.planTextBox}>
-              <Text style={styles.planTitle}>1 Year</Text>
-              <Text style={styles.planDesc}>
-                First 3 days free, then $529,99/year
-              </Text>
-            </View>
-          </View>
+        <View style={styles.planBoxesContainer}>
+          <PlanBox
+            plan={PLAN_TYPES.MONTHLY as keyof typeof PLAN_TYPES}
+            title="1 Month"
+            desc="$2.99/month,"
+            activeDesc="auto renewable"
+          />
+          <PlanBox
+            plan={PLAN_TYPES.YEARLY as keyof typeof PLAN_TYPES}
+            title="1 Year"
+            desc="First 3 days free,"
+            activeDesc="then $529,99/year"
+          />
         </View>
         <PrimaryButton label="Try free for 3 days" onPress={handleSubscribe} />
         <Text style={styles.legalText}>

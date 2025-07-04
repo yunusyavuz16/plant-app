@@ -1,6 +1,6 @@
-import { CategoryResponse } from '../types/category';
-import { API_ENDPOINTS } from '../constants/api';
-import { apiClient } from './api/client';
+import { CategoryResponse } from "../types/category";
+import { API_ENDPOINTS } from "../constants/api";
+import { apiClient } from "./api/client";
 
 export const categoryService = {
   /**

@@ -18,6 +18,8 @@ export const colors = {
   text: {
     primary: '#13231B',
     primaryLight: '#13231B70',
+    extraLightWhite: '#FFFFFF52',
+    extraLightWhite2: '#FFFFFF50',
     secondary: '#7C8471',
     white: '#FFFFFF',
     lightWhite: '#FFFFFF70',
@@ -71,6 +73,7 @@ export const typography = {
   size: {
     xs: 9,
     sm: 11,
+    smBold: 12,
     base: 13,
     md: 15,
     lg: 16,
