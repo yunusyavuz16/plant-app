@@ -1,26 +1,49 @@
-import styles from "@/screens/Paywall/PaywallScreen.styles";
-import React from "react";
+import React, { memo } from "react";
 import { Dimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import styles from "@/screens/Paywall/PaywallScreen.styles";
 
-const CONST_HEIGHT_CONTENT = 612;
+/**
+ * Props for the PaywallInnerLayout component
+ */
+interface PaywallInnerLayoutProps {
+  /** Child components to render inside the layout */
+  children: React.ReactNode;
+}
 
-const PaywallInnerLayout = ({ children }: { children: React.ReactNode }) => {
+/**
+ * Configuration constants for the inner layout
+ */
+const INNER_LAYOUT_CONFIG = {
+  CONTENT_HEIGHT: 612,
+  ACCESSIBILITY: {
+    CONTAINER: "Paywall content container",
+  },
+} as const;
+
+/**
+ * PaywallInnerLayout component that provides the inner content layout
+ * for the paywall screen, handling content positioning and safe area insets.
+ *
+ * @param props - Component props
+ * @returns A React component
+ */
+const PaywallInnerLayout: React.FC<PaywallInnerLayoutProps> = ({ children }) => {
   const insets = useSafeAreaInsets();
   const { height: SCREEN_HEIGHT } = Dimensions.get("window");
+
+  const marginTop = SCREEN_HEIGHT - INNER_LAYOUT_CONFIG.CONTENT_HEIGHT - insets.bottom - insets.top;
+
   return (
     <View
-      style={[
-        styles.content,
-        {
-          marginTop:
-            SCREEN_HEIGHT - CONST_HEIGHT_CONTENT - insets.bottom - insets.top,
-        },
-      ]}
+      style={[styles.content, { marginTop }]}
+      accessibilityRole="none"
+      accessibilityLabel={INNER_LAYOUT_CONFIG.ACCESSIBILITY.CONTAINER}
     >
       {children}
     </View>
   );
 };
 
-export default PaywallInnerLayout;
+// Memoize the component to prevent unnecessary re-renders
+export default memo(PaywallInnerLayout);

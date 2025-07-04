@@ -7,40 +7,58 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import ShimmerPlaceholder from "react-native-shimmer-placeholder";
 import styles from "./HomeShimmer.styles";
 
-export const HomeShimmer: React.FC = () => (
-  <SafeAreaView style={styles.container}>
-    {/* Premium banner */}
+/**
+ * Constants for shimmer placeholder configuration
+ */
+const SHIMMER_CONFIG = {
+  QUESTION_COUNT: 3,
+  CATEGORY_COUNT: 6,
+  QUESTION_CARD_WIDTH: 120,
+} as const;
+
+/**
+ * Loading placeholder component for the home screen.
+ * Displays animated shimmer effects in place of:
+ * 1. Premium banner
+ * 2. Section headers
+ * 3. Question cards
+ * 4. Category grid
+ */
+export const HomeShimmer: React.FC = () => {
+  /**
+   * Renders a shimmer placeholder with LinearGradient
+   * @param style - Additional styles to apply to the placeholder
+   * @param key - Optional key for list items
+   */
+  const renderShimmer = (style: any, key?: number) => (
     <ShimmerPlaceholder
+      key={key}
       LinearGradient={LinearGradient}
-      style={styles.premiumBanner}
+      style={style}
     />
+  );
 
-    {/* “Get Started” header */}
-    <ShimmerPlaceholder
-      LinearGradient={LinearGradient}
-      style={[styles.sectionTitle, { width: 120 }]}
-    />
+  return (
+    <SafeAreaView style={styles.container}>
+      {/* Premium banner placeholder */}
+      {renderShimmer(styles.premiumBanner)}
 
-    {/* Horizontal question cards */}
-    <View style={styles.row}>
-      {[1, 2, 3].map((i) => (
-        <ShimmerPlaceholder
-          key={i}
-          LinearGradient={LinearGradient}
-          style={[styles.questionCard, { marginRight: spacing.sm }]}
-        />
-      ))}
-    </View>
+      {/* "Get Started" header placeholder */}
+      {renderShimmer([styles.sectionTitle, { width: SHIMMER_CONFIG.QUESTION_CARD_WIDTH }])}
 
-    {/* Category grid */}
-    <View style={styles.grid}>
-      {[1, 2, 3, 4, 5, 6].map((i) => (
-        <ShimmerPlaceholder
-          key={i}
-          LinearGradient={LinearGradient}
-          style={styles.categoryCard}
-        />
-      ))}
-    </View>
-  </SafeAreaView>
-);
+      {/* Horizontal question cards placeholders */}
+      <View style={styles.row}>
+        {Array.from({ length: SHIMMER_CONFIG.QUESTION_COUNT }).map((_, index) => (
+          renderShimmer([styles.questionCard, { marginRight: spacing.sm }], index)
+        ))}
+      </View>
+
+      {/* Category grid placeholders */}
+      <View style={styles.grid}>
+        {Array.from({ length: SHIMMER_CONFIG.CATEGORY_COUNT }).map((_, index) => (
+          renderShimmer(styles.categoryCard, index)
+        ))}
+      </View>
+    </SafeAreaView>
+  );
+};

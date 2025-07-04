@@ -1,43 +1,89 @@
-import { setSelectedPlan } from "@/store/slices/subscriptionSlice";
-import { LinearGradient } from "expo-linear-gradient";
-import React from "react";
+import React, { memo, useCallback } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import { PLAN_TYPES } from "../../../constants/plan";
-import { useAppDispatch, useAppSelector } from "../../../store";
+import { LinearGradient } from "expo-linear-gradient";
+import { PLAN_TYPES } from "@/constants/plan";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { setSelectedPlan } from "@/store/slices/subscriptionSlice";
 import styles from "../PaywallScreen.styles";
 
-const PlanBox = ({
-  plan,
-  title,
-  desc,
-  activeDesc,
-}: {
+/**
+ * Props for the PlanBox component
+ */
+interface PlanBoxProps {
+  /** Plan type from available plan types */
   plan: keyof typeof PLAN_TYPES;
+  /** Title text for the plan */
   title: string;
+  /** Description text for the plan */
   desc: string;
+  /** Description text when plan is active */
   activeDesc: string;
-}) => {
+}
+
+/**
+ * Configuration constants for the plan box
+ */
+const PLAN_BOX_CONFIG = {
+  GRADIENT: {
+    COLORS: ["rgba(40,175,110,0.24)", "rgba(40,175,110,0.00)"],
+    START: { x: 1, y: 0 },
+    END: { x: 0, y: 0 },
+  },
+  ACCESSIBILITY: {
+    CONTAINER: (title: string) => `${title} subscription plan option`,
+    SAVE_BADGE: "Save 50% with yearly plan",
+    RADIO_BUTTON: (isSelected: boolean) =>
+      `${isSelected ? "Selected" : "Select"} subscription plan`,
+  },
+  TOUCH_OPACITY: 0.8,
+  SAVE_PERCENTAGE: "50%",
+} as const;
+
+/**
+ * PlanBox component that displays a subscription plan option
+ * with radio button selection, pricing, and save badge for yearly plans.
+ *
+ * @param props - Component props
+ * @returns A React component
+ */
+const PlanBox: React.FC<PlanBoxProps> = ({ plan, title, desc, activeDesc }) => {
   const selectedPlan = useAppSelector(
     (state) => state.subscription.selectedPlan
   );
   const dispatch = useAppDispatch();
-  if (plan === selectedPlan) {
+
+  const handlePress = useCallback(() => {
+    dispatch(setSelectedPlan(plan));
+  }, []);
+
+  const isSelected = plan === selectedPlan;
+  const isYearlyPlan = plan === PLAN_TYPES.YEARLY;
+
+  if (isSelected) {
     return (
       <TouchableOpacity
         style={styles.planBoxContainer}
-        onPress={() => dispatch(setSelectedPlan(plan))}
-        activeOpacity={0.8}
+        onPress={handlePress}
+        activeOpacity={PLAN_BOX_CONFIG.TOUCH_OPACITY}
+        accessibilityRole="radio"
+        accessibilityState={{ checked: true }}
+        accessibilityLabel={PLAN_BOX_CONFIG.ACCESSIBILITY.CONTAINER(title)}
+        accessibilityHint={PLAN_BOX_CONFIG.ACCESSIBILITY.RADIO_BUTTON(true)}
       >
         <LinearGradient
-          // exact stops from Figma: #28AF6E @24% → #28AF6E @0%
-          colors={["rgba(40,175,110,0.24)", "rgba(40,175,110,0.00)"]}
-          start={{ x: 1, y: 0 }}
-          end={{ x: 0, y: 0 }}
+          colors={PLAN_BOX_CONFIG.GRADIENT.COLORS}
+          start={PLAN_BOX_CONFIG.GRADIENT.START}
+          end={PLAN_BOX_CONFIG.GRADIENT.END}
           style={[styles.planBox, styles.planBoxActive]}
         >
-          {plan === PLAN_TYPES.YEARLY && (
-            <View style={styles.saveBadge}>
-              <Text style={styles.saveBadgeText}>Save 50%</Text>
+          {isYearlyPlan && (
+            <View
+              style={styles.saveBadge}
+              accessibilityLabel={PLAN_BOX_CONFIG.ACCESSIBILITY.SAVE_BADGE}
+            >
+              <Text style={styles.saveBadgeText}>
+                Save {PLAN_BOX_CONFIG.SAVE_PERCENTAGE}
+              </Text>
             </View>
           )}
           <View style={styles.planRow}>
@@ -56,11 +102,16 @@ const PlanBox = ({
       </TouchableOpacity>
     );
   }
+
   return (
     <TouchableOpacity
       style={styles.planBoxContainer}
-      onPress={() => dispatch(setSelectedPlan(plan))}
-      activeOpacity={0.8}
+      onPress={handlePress}
+      activeOpacity={PLAN_BOX_CONFIG.TOUCH_OPACITY}
+      accessibilityRole="radio"
+      accessibilityState={{ checked: false }}
+      accessibilityLabel={PLAN_BOX_CONFIG.ACCESSIBILITY.CONTAINER(title)}
+      accessibilityHint={PLAN_BOX_CONFIG.ACCESSIBILITY.RADIO_BUTTON(false)}
     >
       <View style={styles.planBox}>
         <View style={styles.planRow}>
@@ -78,4 +129,5 @@ const PlanBox = ({
   );
 };
 
-export default PlanBox;
+// Memoize the component to prevent unnecessary re-renders
+export default memo(PlanBox);
