@@ -3,7 +3,7 @@ import { TEXTS } from "@/constants/text";
 import React, { useMemo } from "react";
 import { ImageBackground, Text, TextInput, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import styles from "./HomeScreen.styles";
+import styles from "../HomeScreen.styles";
 
 const HomeHeader = () => {
   const insets = useSafeAreaInsets();
@@ -15,7 +15,7 @@ const HomeHeader = () => {
     return { text: TEXTS.HOME.GREETING.EVENING, emoji: "🌙" };
   }, []);
   return (
-    <ImageBackground source={require("../../../assets/home/Background.png")}>
+    <ImageBackground source={require("../../../../assets/home/Background.png")}>
       <View style={[styles.header, { paddingTop: insets.top }]}>
         <Text style={styles.welcomeText}>{TEXTS.HOME.WELCOME}</Text>
         <Text style={styles.greetingText}>

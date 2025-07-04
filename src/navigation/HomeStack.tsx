@@ -1,11 +1,13 @@
+import HomeHeader from "@/screens/Home/components/HomeHeader";
+import { HomeShimmer } from "@/screens/Home/components/HomeShimmer";
 import TabIcon from "@components/icons/TabIcon";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import CameraScreen from "@screens/Camera/CameraScreen";
 import DiagnoseScreen from "@screens/Diagnose/DiagnoseScreen";
-import HomeHeader from "@screens/Home/HomeHeader";
 import HomeScreen from "@screens/Home/HomeScreen";
 import MyGardenScreen from "@screens/MyGarden/MyGardenScreen";
 import ProfileScreen from "@screens/Profile/ProfileScreen";
+import { useHomeIndex } from "hooks/useHomeIndex";
 import React from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -23,7 +25,14 @@ const Tab = createBottomTabNavigator<HomeStackParamList>();
  * Main navigation stack shown after onboarding completion
  */
 const HomeStack: React.FC = () => {
+  const { categories, questions, loading } = useHomeIndex();
+
   const insets = useSafeAreaInsets();
+
+  if (loading && categories.length === 0 && questions.length === 0) {
+    return <HomeShimmer />;
+  }
+
   return (
     <Tab.Navigator
       screenOptions={{

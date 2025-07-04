@@ -1,4 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { Image as RNImage } from "react-native";
 import { categoryService } from "../../services/categoryService";
 import { questionService } from "../../services/questionService";
 import { Category } from "../../types/category";
@@ -26,6 +27,16 @@ export const fetchHomeData = createAsyncThunk(
         categoryService.getCategories(),
         questionService.getQuestions(),
       ]);
+
+      for (const item of [...questionsRes]) {
+        const uri = item.image_uri;
+        await RNImage.prefetch(uri);
+      }
+
+      for (const item of [...categoriesRes.data]) {
+        const uri = item.image.url;
+        await RNImage.prefetch(uri);
+      }
 
       return {
         categories: categoriesRes.data,
