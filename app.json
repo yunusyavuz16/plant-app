@@ -15,8 +15,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.yunusyavuz.plantproject"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {

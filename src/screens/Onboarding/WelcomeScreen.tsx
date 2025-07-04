@@ -2,7 +2,7 @@ import PrimaryButton from "@components/PrimaryButton/PrimaryButton";
 import { OnboardingStackParamList } from "@navigation/OnboardingStack";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
-import { Image, ImageBackground, Text, View } from "react-native";
+import { Image, ImageBackground, ImageStyle, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import styles from "./WelcomeScreen.styles";
 
@@ -43,7 +43,7 @@ const WelcomeScreen: React.FC<
         <View style={styles.imageContainer}>
           <Image
             source={require("../../../assets/get-started/get-started-middle.png")}
-            style={styles.image}
+            style={styles.image as ImageStyle}
           />
         </View>
         <View style={styles.bottom}>

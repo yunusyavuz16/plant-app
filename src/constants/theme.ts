@@ -17,11 +17,13 @@ export const colors = {
   // Text Colors
   text: {
     primary: '#13231B',
+    primaryLight: '#13231B70',
     secondary: '#7C8471',
     white: '#FFFFFF',
     gold: '#E5C990',
     gray: '#B6C2B7',
     darkGray: '#6A7B6E',
+    lightGreen: '#59716570',
   },
 
   // Border Colors
@@ -56,6 +58,14 @@ export const spacing = {
 };
 
 export const typography = {
+  fonts: {
+    Rubik: 'Rubik',
+    SFProText: 'SFProText',
+    RubikSemiBold: 'Rubik-SemiBold',
+    SFProTextBold: 'SFProText-Bold',
+    RubikExtraBold: 'Rubik-ExtraBold',
+    RubikMedium: 'Rubik-Medium',
+  },
   size: {
     xs: 9,
     sm: 11,
@@ -69,7 +79,7 @@ export const typography = {
     huge: 32,
   },
   weight: {
-    regular: '400',
+    regular: "400",
     medium: '500',
     semiBold: '600',
     bold: '700',

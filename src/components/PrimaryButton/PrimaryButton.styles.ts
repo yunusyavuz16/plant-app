@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   label: {
     color: colors.text.white,
     fontSize: typography.size.md,
-    fontWeight: '600',
+    fontFamily: typography.fonts.SFProTextBold,
     letterSpacing: 0.5,
   },
 });

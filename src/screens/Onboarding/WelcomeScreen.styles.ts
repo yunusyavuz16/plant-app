@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions, StyleSheet, Platform } from "react-native";
 import { colors, spacing, typography } from "../../constants/theme";
 
 const { height, width } = Dimensions.get('window');
@@ -31,20 +31,21 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: typography.size.display,
-    fontWeight: '400',
     color: colors.text.primary,
     textAlign: "left",
     lineHeight: typography.lineHeight.lg,
+    fontFamily: typography.fonts.Rubik,
   },
   titleHighlight: {
     color: colors.text.primary,
-    fontWeight: '800',
+    fontFamily: typography.fonts.RubikSemiBold,
   },
   subtitle: {
     fontSize: typography.size.xl,
-    color: colors.text.secondary,
+    color: colors.text.primaryLight,
     marginTop: spacing.sm,
     lineHeight: typography.lineHeight.base,
+    fontFamily: typography.fonts.Rubik,
   },
   bottom: {
     justifyContent: "flex-end",
@@ -62,16 +63,18 @@ const styles = StyleSheet.create({
   },
   disclaimer: {
     fontSize: typography.size.sm,
-    color: colors.text.secondary,
+    color: colors.text.lightGreen,
     textAlign: "center",
     lineHeight: typography.lineHeight.sm,
     paddingHorizontal: spacing.sm,
+    fontFamily: typography.fonts.Rubik,
     width: "100%",
   },
   link: {
+    fontFamily: typography.fonts.Rubik,
+    fontSize: typography.size.sm,
+    color: colors.text.lightGreen,
     textDecorationLine: "underline",
-    color: colors.text.secondary,
-    fontWeight: '500',
   },
 });
 
