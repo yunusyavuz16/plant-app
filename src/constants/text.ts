@@ -20,7 +20,8 @@ export const TEXTS = {
     WELCOME: "Hi, plant lover!",
     SEARCH_PLACEHOLDER: "Search for plants",
     PREMIUM_BANNER: {
-      TITLE: "FREE Premium Available",
+      TITLE_BOLD: "FREE",
+      TITLE_REGULAR: "Premium Available",
       SUBTITLE: "Tap to upgrade your account!",
     },
     SECTIONS: {
@@ -52,7 +53,8 @@ export const TEXTS = {
       },
     },
     CTA: "Try free for 3 days",
-    LEGAL: "After the 3-day free trial period you'll be charged ₺274.99 per year unless you cancel before the trial expires. Yearly Subscription is Auto-Renewable",
+    LEGAL:
+      "After the 3-day free trial period you'll be charged ₺274.99 per year unless you cancel before the trial expires. Yearly Subscription is Auto-Renewable",
     LINKS: {
       TERMS: "Terms",
       PRIVACY: "Privacy",

@@ -28,6 +28,12 @@ export const colors = {
     gold: '#E5C990',
     darkGray: '#6A7B6E',
     lightGreen: '#59716570',
+    lightGold: '#F5C25B',
+    // E5C990
+    extraLightGold: '#E5C990',
+    // E4B046
+    boldGold: '#E4B046',
+    lightYellow: '#FFDE9C',
   },
 
   // Border Colors
