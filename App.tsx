@@ -1,27 +1,17 @@
-import { OnboardingProvider } from "@context/OnboardingContext";
-import RootNavigator from "@navigation/RootNavigator";
-import { NavigationContainer } from "@react-navigation/native";
-import React from "react";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { enableScreens } from "react-native-screens";
+import { StatusBar } from 'expo-status-bar';
+import React, { useEffect } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Provider } from 'react-redux';
+import { store } from './src/store';
+import RootNavigator from './src/navigation/RootNavigator';
 
-// Enable native screens and reanimated
-enableScreens(true);
-
-/**
- * Root component registered by Expo.
- */
 export default function App() {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    <Provider store={store}>
       <SafeAreaProvider>
-        <OnboardingProvider>
-          <NavigationContainer>
-            <RootNavigator />
-          </NavigationContainer>
-        </OnboardingProvider>
+        <StatusBar style="auto" />
+        <RootNavigator />
       </SafeAreaProvider>
-    </GestureHandlerRootView>
+    </Provider>
   );
 }

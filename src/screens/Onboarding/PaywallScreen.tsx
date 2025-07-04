@@ -1,5 +1,6 @@
+import { useAppDispatch } from "@/store";
+import { completeOnboarding } from "@/store/slices/onboardingSlice";
 import PrimaryButton from "@components/PrimaryButton/PrimaryButton";
-import { useOnboarding } from "@context/OnboardingContext";
 import { OnboardingStackParamList } from "@navigation/OnboardingStack";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
@@ -33,14 +34,14 @@ const PaywallScreen: React.FC<
   NativeStackScreenProps<OnboardingStackParamList, "Paywall">
 > = () => {
   const insets = useSafeAreaInsets();
-  const { completeOnboarding } = useOnboarding();
+  const dispatch = useAppDispatch();
 
   /**
    * Complete onboarding when user closes paywall.
    * This will trigger RootNavigator to show MainStack.
    */
   const handleClose = async () => {
-    await completeOnboarding();
+    dispatch(completeOnboarding());
   };
 
   /**

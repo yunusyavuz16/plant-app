@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -10,47 +10,43 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ChevronRightIcon from "../../components/icons/ChevronRightIcon";
 import MailIcon from "../../components/icons/MailIcon";
-import { categoryService } from "../../services/categoryService";
-import { questionService } from "../../services/questionService";
+import {
+  useAppDispatch,
+  useAppSelector
+} from "../../store";
+import { fetchHomeData } from "../../store/slices/homeSlice";
 import { Category } from "../../types/category";
 import { Question } from "../../types/question";
 import styles from "./HomeScreen.styles";
 
 export const HomeScreen: React.FC = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [questions, setQuestions] = useState<Question[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [refreshing, setRefreshing] = useState(false);
-  const insets = useSafeAreaInsets();
+  const dispatch = useAppDispatch();
+  const { categories, questions, loading } = useAppSelector(
+    (state) => state.home
+  );
+  const [refreshing, setRefreshing] = React.useState(false);
 
   // Fetch data
   const fetchData = useCallback(async () => {
     try {
-      const [catRes, qRes] = await Promise.all([
-        categoryService.getCategories(),
-        questionService.getQuestions(),
-      ]);
-      setCategories(catRes.data.sort((a, b) => a.rank - b.rank));
-      setQuestions(qRes);
+      await dispatch(fetchHomeData()).unwrap();
     } catch (e) {
       console.error(e);
     } finally {
-      setLoading(false);
       setRefreshing(false);
     }
   }, []);
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, []);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     fetchData();
-  }, [fetchData]);
+  }, []);
 
   // Renderers
   const renderQuestionItem = useCallback(
