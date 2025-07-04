@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: layout.button.height,
-    marginHorizontal: 0,
   },
   label: {
     color: colors.text.white,

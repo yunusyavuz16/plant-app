@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   image: {
     height: "100%",
     width: "100%",
-    bottom: -50,
+    bottom: -36,
   },
   bottom: {
     alignItems: "center",
