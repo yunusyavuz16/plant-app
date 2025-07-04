@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { colors, layout, mixins, spacing, typography } from "../../constants/theme";
 
 const styles = StyleSheet.create({
   backgroundImage: {
@@ -11,8 +12,8 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: "flex-start",
-    marginBottom: 12,
-    paddingHorizontal: 24,
+    marginBottom: spacing.md,
+    paddingHorizontal: spacing.xxl,
     backgroundColor: "transparent",
   },
   titleRow: {
@@ -22,21 +23,19 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
   },
   title: {
-    fontSize: 28,
-    fontWeight: "600",
-    color: "#13231B",
-    lineHeight: 34,
-    textShadowColor: "rgba(0, 0, 0, 0.25)",
-    textShadowOffset: { width: 0, height: 4 },
-    textShadowRadius: 4,
+    fontSize: typography.size.display,
+    fontWeight: '600',
+    color: colors.text.primary,
+    lineHeight: typography.lineHeight.lg,
+    ...mixins.shadow.textShadow,
   },
   titleHighlight: {
-    fontWeight: "900",
-    color: "#13231B",
+    fontWeight: '900',
+    color: colors.text.primary,
   },
   brushImage: {
     position: "absolute",
-    left: 112, // adjust as needed for underline
+    left: 112,
     bottom: -20,
     width: 200,
     height: 16,
@@ -54,31 +53,31 @@ const styles = StyleSheet.create({
   },
   bottom: {
     alignItems: "center",
-    paddingHorizontal: 24,
+    paddingHorizontal: spacing.xxl,
   },
   buttonContainer: {
     width: "100%",
-    marginBottom: 8,
+    marginBottom: spacing.sm,
   },
   pagination: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 16,
-    marginBottom: 20,
+    marginTop: spacing.lg,
+    marginBottom: spacing.xl,
   },
   dot: {
     width: 6,
     height: 6,
-    borderRadius: 3,
+    borderRadius: layout.radius.xs,
     backgroundColor: "#E5E5E5",
-    marginHorizontal: 3,
+    marginHorizontal: spacing.xs,
   },
   dotActive: {
-    backgroundColor: "#13231B",
+    backgroundColor: colors.text.primary,
     width: 8,
     height: 8,
-    borderRadius: 4,
+    borderRadius: layout.radius.sm,
   },
 });
 

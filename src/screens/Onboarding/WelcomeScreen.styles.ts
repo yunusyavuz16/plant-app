@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { colors, spacing, typography } from "../../constants/theme";
 
 const styles = StyleSheet.create({
   imageContainer: {
@@ -10,7 +11,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   image: {
-    top: 16,
+    top: spacing.lg,
     height: "100%",
   },
   backgroundImage: {
@@ -22,30 +23,30 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    paddingHorizontal: 24,
+    paddingHorizontal: spacing.xxl,
     alignItems: "flex-start",
-    marginBottom: 20,
+    marginBottom: spacing.xl,
   },
   title: {
-    fontSize: 28,
-    fontWeight: "400", // Regular weight for "Welcome to"
-    color: "#13231B",
+    fontSize: typography.size.display,
+    fontWeight: '400',
+    color: colors.text.primary,
     textAlign: "left",
-    lineHeight: 34,
+    lineHeight: typography.lineHeight.lg,
   },
   titleHighlight: {
-    color: "#13231B", // Exact green from design
-    fontWeight: "800", // Bold weight for "PlantApp"
+    color: colors.text.primary,
+    fontWeight: '800',
   },
   subtitle: {
-    fontSize: 17,
-    color: "#7C8471", // Exact gray from design
-    marginTop: 8,
-    lineHeight: 24,
+    fontSize: typography.size.xl,
+    color: colors.text.secondary,
+    marginTop: spacing.sm,
+    lineHeight: typography.lineHeight.base,
   },
   bottom: {
     justifyContent: "flex-end",
-    paddingHorizontal: 24,
+    paddingHorizontal: spacing.xxl,
   },
   buttonContainer: {
     alignItems: "center",
@@ -54,21 +55,21 @@ const styles = StyleSheet.create({
   },
   bottomInner: {
     alignItems: "center",
-    marginTop: 16,
+    marginTop: spacing.lg,
     width: "100%",
   },
   disclaimer: {
-    fontSize: 11,
-    color: "#7C8471",
+    fontSize: typography.size.sm,
+    color: colors.text.secondary,
     textAlign: "center",
-    lineHeight: 18,
-    paddingHorizontal: 8,
+    lineHeight: typography.lineHeight.sm,
+    paddingHorizontal: spacing.sm,
     width: "100%",
   },
   link: {
     textDecorationLine: "underline",
-    color: "#7C8471",
-    fontWeight: "500",
+    color: colors.text.secondary,
+    fontWeight: '500',
   },
 });
 

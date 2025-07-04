@@ -1,18 +1,19 @@
 import { StyleSheet } from 'react-native';
+import { colors, layout, typography } from '../../constants/theme';
 
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    backgroundColor: '#28AF6E', // Exact green from design
-    borderRadius: 12, // More rounded corners
+    backgroundColor: colors.primary.green,
+    borderRadius: layout.radius.lg,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 56,
+    height: layout.button.height,
     marginHorizontal: 0,
   },
   label: {
-    color: '#FFFFFF',
-    fontSize: 15,
+    color: colors.text.white,
+    fontSize: typography.size.md,
     fontWeight: '600',
     letterSpacing: 0.5,
   },

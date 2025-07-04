@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
+import { colors, layout, spacing, typography } from "../../constants/theme";
 
 const { width, height } = Dimensions.get("window");
 
@@ -11,8 +12,8 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: "flex-start",
-    paddingHorizontal: 24,
-    marginBottom: 20,
+    paddingHorizontal: spacing.xxl,
+    marginBottom: spacing.xl,
   },
   titleContainer: {
     alignItems: "flex-start",
@@ -23,13 +24,13 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   titleHighlight: {
-    fontWeight: "900",
+    fontWeight: '900',
   },
   title: {
-    fontSize: 28,
-    fontWeight: "700",
-    color: "#13231B",
-    lineHeight: 34,
+    fontSize: typography.size.display,
+    fontWeight: '700',
+    color: colors.text.primary,
+    lineHeight: typography.lineHeight.lg,
   },
   brushImage: {
     width: 150,
@@ -49,32 +50,32 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   bottom: {
-    paddingHorizontal: 24,
+    paddingHorizontal: spacing.xxl,
     alignItems: "center",
   },
   buttonContainer: {
     width: "100%",
-    marginBottom: 8,
+    marginBottom: spacing.sm,
   },
   pagination: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 16,
-    marginBottom: 20,
+    marginTop: spacing.lg,
+    marginBottom: spacing.xl,
   },
   dot: {
     width: 6,
     height: 6,
-    borderRadius: 3,
+    borderRadius: layout.radius.xs,
     backgroundColor: "#E5E5E5",
-    marginHorizontal: 3,
+    marginHorizontal: spacing.xs,
   },
   dotActive: {
-    backgroundColor: "#13231B",
+    backgroundColor: colors.text.primary,
     width: 8,
     height: 8,
-    borderRadius: 4,
+    borderRadius: layout.radius.sm,
   },
 });
 
