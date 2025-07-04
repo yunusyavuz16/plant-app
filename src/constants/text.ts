@@ -28,7 +28,7 @@ export const TEXTS = {
     },
   },
   PAYWALL: {
-    TITLE: "PlantApp Premium",
+    TITLE: "Premium",
     SUBTITLE: "Access All Features",
     FEATURES: {
       UNLIMITED: "Unlimited",
