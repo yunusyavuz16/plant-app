@@ -8,6 +8,7 @@ import styles from "./FeaturesScreen.styles";
 import OnBoardLayout from "./components/OnBoardLayout";
 import OnboardingAction from "./components/OnboardingAction";
 import OnboardingMiddleImage from "./components/OnboardingMiddleImage";
+import OnboardingPagination from "./components/OnboardingPagination";
 
 /**
  * Second screen in the onboarding flow showing camera feature.
@@ -50,11 +51,7 @@ const FeaturesScreen: React.FC<
           style={styles.buttonContainer}
         />
 
-        <View style={styles.pagination}>
-          <View style={[styles.dot, styles.dotActive]} />
-          <View style={styles.dot} />
-          <View style={styles.dot} />
-        </View>
+        <OnboardingPagination currentIndex={0} totalSteps={3} />
       </View>
     </OnBoardLayout>
   );

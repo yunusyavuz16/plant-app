@@ -3,10 +3,11 @@ import { TEXTS } from "@/constants/text";
 import { OnboardingStackParamList } from "@navigation/OnboardingStack";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
-import { Image, ImageStyle, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import styles from "./WelcomeScreen.styles";
 import OnBoardLayout from "./components/OnBoardLayout";
 import OnboardingAction from "./components/OnboardingAction";
+import OnboardingMiddleImage from "./components/OnboardingMiddleImage";
 
 /**
  * Screen shown first in the onboarding flow.
@@ -29,12 +30,11 @@ const WelcomeScreen: React.FC<
       {/* Header End */}
 
       {/* Image Start */}
-      <View style={styles.imageContainer}>
-        <Image
-          source={require("../../../assets/get-started/get-started-middle.png")}
-          style={styles.image as ImageStyle}
-        />
-      </View>
+      <OnboardingMiddleImage
+        screenName={OnboardingScreens.WELCOME as OnboardingScreenKeyType}
+        imageStyle={styles.image}
+        imageContainerStyle={styles.imageContainer}
+      />
       {/* Image End */}
 
       {/* Bottom Start */}

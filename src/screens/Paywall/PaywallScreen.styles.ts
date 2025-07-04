@@ -35,7 +35,7 @@ export default StyleSheet.create({
     fontWeight: "400",
   },
   content: {
-    paddingVertical: spacing.md,
+    paddingVertical: spacing.sm,
     paddingHorizontal: spacing.xxl,
     flex: 1,
     justifyContent: "flex-end",

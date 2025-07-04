@@ -8,6 +8,7 @@ import styles from "./BenefitsScreen.styles";
 import OnBoardLayout from "./components/OnBoardLayout";
 import OnboardingAction from "./components/OnboardingAction";
 import OnboardingMiddleImage from "./components/OnboardingMiddleImage";
+import OnboardingPagination from "./components/OnboardingPagination";
 
 /**
  * Onboarding 2: Get plant care guides
@@ -41,11 +42,7 @@ const BenefitsScreen: React.FC<
           screenName={OnboardingScreens.PAYWALL as OnboardingScreenKeyType}
           style={styles.buttonContainer}
         />
-        <View style={styles.pagination}>
-          <View style={styles.dot} />
-          <View style={[styles.dot, styles.dotActive]} />
-          <View style={styles.dot} />
-        </View>
+        <OnboardingPagination currentIndex={1} totalSteps={3} />
       </View>
     </OnBoardLayout>
   );

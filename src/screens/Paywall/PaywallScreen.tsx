@@ -20,7 +20,7 @@ import FeatureCard from "./components/FeatureCard";
 import PlanBox from "./components/PlanBox";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
-const CONST_HEIGHT_CONTENT = 600;
+const CONST_HEIGHT_CONTENT = 612;
 
 const FEATURE_ICONS = {
   scan: require("../../../assets/paywall/unlimited-icon.png"),
