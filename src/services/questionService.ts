@@ -1,6 +1,6 @@
 import { Question } from '../types/question';
-
-const API_URL = 'https://dummy-api-jtg6bessta-ey.a.run.app';
+import { API_ENDPOINTS } from '../constants/api';
+import { apiClient } from './api/client';
 
 export const questionService = {
   /**
@@ -8,16 +8,7 @@ export const questionService = {
    * @returns Promise<Question[]>
    */
   getQuestions: async (): Promise<Question[]> => {
-    try {
-      const response = await fetch(`${API_URL}/getQuestions`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      return data.sort((a: Question, b: Question) => a.order - b.order);
-    } catch (error) {
-      console.error('Error fetching questions:', error);
-      throw error;
-    }
+    const data = await apiClient.get<Question[]>(API_ENDPOINTS.questions.getAll);
+    return data.sort((a: Question, b: Question) => a.order - b.order);
   },
 };
