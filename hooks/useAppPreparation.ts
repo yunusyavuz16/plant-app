@@ -1,9 +1,11 @@
+import { store } from "@/store";
+import { initializeOnboarding } from "@/store/slices/onboardingSlice";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect } from "react";
 import { Platform } from "react-native";
 
-export const useAppFonts = () => {
+export const useAppPreparation = () => {
   const [loaded] = useFonts({
     Rubik: Platform.select({
       ios: require("./../assets/fonts/Rubik-Regular.ttf"),
@@ -49,6 +51,7 @@ export const useAppFonts = () => {
       }
     }
     prepare();
+    store.dispatch(initializeOnboarding());
   }, []);
 
   const onLayoutRootView = useCallback(async () => {

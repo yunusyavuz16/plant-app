@@ -1,14 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-const PREFETCH_KEY = '@plant_app_prefetch_status';
+import { STORAGE_KEYS } from '../constants/storage';
 
 export const checkAndSetPrefetchStatus = async (): Promise<boolean> => {
   try {
-    const status = await AsyncStorage.getItem(PREFETCH_KEY);
+    const status = await AsyncStorage.getItem(STORAGE_KEYS.PREFETCH_STATUS);
 
     if (status === null) {
       // First time - need to prefetch
-      await AsyncStorage.setItem(PREFETCH_KEY, 'completed');
+      await AsyncStorage.setItem(STORAGE_KEYS.PREFETCH_STATUS, 'completed');
       return true;
     }
 
