@@ -33,6 +33,14 @@ export default function App() {
       ios: require("./assets/fonts/Rubik-Medium.ttf"),
       android: require("./assets/fonts/Rubik-Medium.ttf"),
     }),
+    "Rubik-Light": Platform.select({
+      ios: require("./assets/fonts/Rubik-Light.ttf"),
+      android: require("./assets/fonts/Rubik-Light.ttf"),
+    }),
+    "Rubik-Regular": Platform.select({
+      ios: require("./assets/fonts/Rubik-Regular.ttf"),
+      android: require("./assets/fonts/Rubik-Regular.ttf"),
+    }),
   });
 
   React.useEffect(() => {

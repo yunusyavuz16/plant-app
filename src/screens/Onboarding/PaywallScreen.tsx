@@ -19,9 +19,30 @@ import styles from "./PaywallScreen.styles";
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 const CONST_HEIGHT_CONTENT = 600;
 
+const FeatureCard = ({
+  icon,
+  title,
+  desc,
+}: {
+  icon: any;
+  title: string;
+  desc: string;
+}) => {
+  return (
+    <View style={styles.featureCard}>
+      <Image
+        source={icon}
+        style={styles.featureIconImage}
+        resizeMode="contain"
+      />
+      <Text style={styles.featureTitle}>{title}</Text>
+      <Text style={styles.featureDesc}>{desc}</Text>
+    </View>
+  );
+};
 // Feature card icons
 const FEATURE_ICONS = {
-  scan: require("../../../assets/paywall/scan-icon.png"),
+  scan: require("../../../assets/paywall/unlimited-icon.png"),
   speed: require("../../../assets/paywall/speed-icon.png"),
   care: require("../../../assets/paywall/care-icon.png"),
 };
@@ -88,36 +109,21 @@ const PaywallScreen: React.FC<
           style={styles.featuresRow}
           showsHorizontalScrollIndicator={false}
         >
-          <View style={styles.featureCard}>
-            <View style={styles.featureIcon}>
-              <Image
-                source={FEATURE_ICONS.scan}
-                style={styles.featureIconImage}
-              />
-            </View>
-            <Text style={styles.featureTitle}>Unlimited</Text>
-            <Text style={styles.featureDesc}>Plant Identify</Text>
-          </View>
-          <View style={[styles.featureCard, styles.marginLeft]}>
-            <View style={styles.featureIcon}>
-              <Image
-                source={FEATURE_ICONS.speed}
-                style={styles.featureIconImage}
-              />
-            </View>
-            <Text style={styles.featureTitle}>Faster</Text>
-            <Text style={styles.featureDesc}>Process</Text>
-          </View>
-          <View style={[styles.featureCard, styles.marginLeft]}>
-            <View style={styles.featureIcon}>
-              <Image
-                source={FEATURE_ICONS.care}
-                style={styles.featureIconImage}
-              />
-            </View>
-            <Text style={styles.featureTitle}>Detailed</Text>
-            <Text style={styles.featureDesc}>Plant care</Text>
-          </View>
+          <FeatureCard
+            icon={FEATURE_ICONS.scan}
+            title="Unlimited"
+            desc="Plant Identify"
+          />
+          <FeatureCard
+            icon={FEATURE_ICONS.speed}
+            title="Faster"
+            desc="Process"
+          />
+          <FeatureCard
+            icon={FEATURE_ICONS.care}
+            title="Detailed"
+            desc="Plant care"
+          />
         </ScrollView>
         <View style={styles.planBox}>
           <View style={styles.planRow}>

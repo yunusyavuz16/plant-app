@@ -32,7 +32,7 @@ export default StyleSheet.create({
     color: colors.text.white,
     fontSize: typography.size.xl,
     textAlign: "center",
-    fontWeight: '400',
+    fontWeight: "400",
   },
   content: {
     paddingVertical: spacing.md,
@@ -44,19 +44,19 @@ export default StyleSheet.create({
   title: {
     fontSize: typography.size.huge,
     color: colors.text.white,
-    fontWeight: '400',
+    fontFamily: typography.fonts.Rubik,
     marginTop: 0,
     marginBottom: spacing.xs,
     textAlign: "left",
   },
   titleBold: {
-    fontWeight: '700',
+    fontFamily: typography.fonts.RubikExtraBold,
     color: colors.text.white,
   },
   subtitle: {
-    fontSize: typography.size.xl,
-    color: colors.text.gray,
-    fontWeight: '400',
+    fontSize: typography.size.xlg,
+    color: colors.text.lightWhite,
+    fontFamily: typography.fonts.RubikLight,
     marginBottom: spacing.xxl,
     textAlign: "center",
   },
@@ -73,8 +73,9 @@ export default StyleSheet.create({
     width: 156,
     backgroundColor: colors.overlay.white,
     borderRadius: layout.radius.xl,
-    padding: spacing.lg,
+    padding: spacing.md,
     height: 130,
+    marginRight: spacing.sm,
   },
   featureIcon: {
     width: layout.icon.md,
@@ -86,18 +87,20 @@ export default StyleSheet.create({
     justifyContent: "center",
   },
   featureIconImage: {
-    width: layout.icon.sm,
-    height: layout.icon.sm,
+    width: layout.icon.md,
+    height: 35.68,
+    marginBottom: spacing.xxl,
   },
   featureTitle: {
     fontSize: typography.size.xxl,
-    fontWeight: '600',
+    fontFamily: typography.fonts.RubikMedium,
     color: colors.text.white,
     marginBottom: spacing.xs,
   },
   featureDesc: {
     fontSize: typography.size.base,
-    color: colors.overlay.darkTransparent,
+    fontFamily: typography.fonts.RubikRegular,
+    color: colors.text.lightWhite,
   },
   planBox: {
     width: "100%",
@@ -142,19 +145,19 @@ export default StyleSheet.create({
   },
   planTitle: {
     color: colors.text.white,
-    fontWeight: '700',
+    fontWeight: "700",
     fontSize: typography.size.lg,
     marginBottom: spacing.xs - 2,
   },
   planDesc: {
     color: colors.text.gray,
     fontSize: typography.size.base,
-    fontWeight: '400',
+    fontWeight: "400",
   },
   planDescDim: {
     color: colors.text.darkGray,
     fontSize: typography.size.base,
-    fontWeight: '400',
+    fontWeight: "400",
   },
   saveBadge: {
     position: "absolute",
@@ -171,7 +174,7 @@ export default StyleSheet.create({
   },
   saveBadgeText: {
     color: colors.text.white,
-    fontWeight: '700',
+    fontWeight: "700",
     fontSize: typography.size.base,
   },
   legalText: {
@@ -190,14 +193,14 @@ export default StyleSheet.create({
   link: {
     color: colors.overlay.darkTransparent,
     fontSize: typography.size.sm,
-    fontWeight: '500',
+    fontWeight: "500",
     marginHorizontal: spacing.xs + 2,
     textDecorationLine: "underline",
   },
   linkDot: {
     color: colors.overlay.darkTransparent,
     fontSize: typography.size.sm,
-    fontWeight: '500',
+    fontWeight: "500",
     marginHorizontal: 0,
   },
 });
