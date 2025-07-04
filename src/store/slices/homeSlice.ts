@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Image as RNImage } from "react-native";
+import { Image as RNImage } from "expo-image";
 import { categoryService } from "../../services/categoryService";
 import { questionService } from "../../services/questionService";
 import { Category } from "../../types/category";
 import { Question } from "../../types/question";
+import { checkAndSetPrefetchStatus } from "../../utils/prefetchManager";
 
 interface HomeState {
   categories: Category[];
@@ -28,14 +29,19 @@ export const fetchHomeData = createAsyncThunk(
         questionService.getQuestions(),
       ]);
 
-      for (const item of [...questionsRes]) {
-        const uri = item.image_uri;
-        await RNImage.prefetch(uri);
-      }
+      const shouldPrefetch = await checkAndSetPrefetchStatus();
 
-      for (const item of [...categoriesRes.data]) {
-        const uri = item.image.url;
-        await RNImage.prefetch(uri);
+      if (shouldPrefetch) {
+        // Only prefetch images on first app launch
+        for (const item of [...questionsRes]) {
+          const uri = item.image_uri;
+          await RNImage.prefetch(uri);
+        }
+
+        for (const item of [...categoriesRes.data]) {
+          const uri = item.image.url;
+          await RNImage.prefetch(uri);
+        }
       }
 
       return {
