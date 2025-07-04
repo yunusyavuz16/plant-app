@@ -3,6 +3,7 @@ export const colors = {
   primary: {
     green: '#28AF6E',
     dark: '#13231B',
+    inactive: '#979798',
   },
 
   // Background Colors

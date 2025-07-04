@@ -1,4 +1,6 @@
-import { useAppSelector } from "@/store";
+import DataErrorView from "@/components/DataErrorView/DataErrorView";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { fetchHomeData } from "@/store/slices/homeSlice";
 import React from "react";
 import { FlatList, View } from "react-native";
 import styles from "./HomeScreen.styles";
@@ -6,8 +8,21 @@ import HomeCategoryItem from "./components/HomeCategoryItem";
 import HomeListHeader from "./components/HomeListHeader";
 
 export const HomeScreen: React.FC = () => {
-  const { categories } = useAppSelector((state) => state.home);
+  const { categories, error } = useAppSelector((state) => state.home);
+  const dispatch = useAppDispatch();
 
+  // Show error state
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <DataErrorView
+          message="Unable to load content"
+          errorDetails={error}
+          onRetry={() => dispatch(fetchHomeData())}
+        />
+      </View>
+    );
+  }
   return (
     <View style={styles.innerContainer}>
       <FlatList

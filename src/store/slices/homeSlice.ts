@@ -28,7 +28,6 @@ export const fetchHomeData = createAsyncThunk(
         categoryService.getCategories(),
         questionService.getQuestions(),
       ]);
-
       // Prefetch images
       const shouldPrefetch = await checkAndSetPrefetchStatus();
       if (shouldPrefetch) {

@@ -1,5 +1,4 @@
-import DataErrorView from "@/components/DataErrorView/DataErrorView";
-import { colors } from "@/constants/theme";
+import { colors, typography } from "@/constants/theme";
 import { useHomeIndex } from "@/hooks/useHomeIndex";
 import HomeHeader from "@/screens/Home/components/HomeHeader";
 import { HomeShimmer } from "@/screens/Home/components/HomeShimmer";
@@ -13,6 +12,7 @@ import ProfileScreen from "@screens/Profile/ProfileScreen";
 import React from "react";
 import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { styles } from "./HomeStack.styles";
 
 export type HomeStackParamList = {
   HomeScreen: undefined;
@@ -28,27 +28,14 @@ const Tab = createBottomTabNavigator<HomeStackParamList>();
  * Main navigation stack shown after onboarding completion
  */
 const HomeStack: React.FC = () => {
-  const { categories, questions, loading, error, retry } = useHomeIndex();
+  const { categories, questions, loading } = useHomeIndex();
   const insets = useSafeAreaInsets();
 
   // Show loading state
   if (loading && categories.length === 0 && questions.length === 0) {
     return (
-      <View style={{ flex: 1, backgroundColor: colors.background.white }}>
+      <View style={styles.container}>
         <HomeShimmer />
-      </View>
-    );
-  }
-
-  // Show error state
-  if (error) {
-    return (
-      <View style={{ flex: 1, backgroundColor: colors.background.white }}>
-        <DataErrorView
-          message="Unable to load content"
-          errorDetails={error}
-          onRetry={retry}
-        />
       </View>
     );
   }
@@ -66,11 +53,11 @@ const HomeStack: React.FC = () => {
           height: 49 + insets.bottom,
           bottom: 0,
         },
-        tabBarActiveTintColor: "#28AF6E",
-        tabBarInactiveTintColor: "#979798",
+        tabBarActiveTintColor: colors.primary.green,
+        tabBarInactiveTintColor: colors.primary.inactive,
         tabBarLabelStyle: {
-          fontSize: 11,
-          fontWeight: "500",
+          fontSize: typography.size.sm,
+          fontFamily: typography.fonts.RubikRegular,
         },
       }}
     >
