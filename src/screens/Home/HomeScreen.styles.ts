@@ -133,17 +133,24 @@ export default StyleSheet.create({
     marginLeft: 16,
   },
   categoriesContainer: {
-    padding: 16,
+    paddingHorizontal: 24,
+    marginBottom: 24,
   },
   categoriesGrid: {
     paddingBottom: 16,
+  },
+  questionsGridContent: {
+    flexDirection: "row",
+    gap: 8,
   },
   categoryCard: {
     flex: 1,
     margin: 8,
     padding: 16,
     borderRadius: 12,
-    backgroundColor: "#F5F5F5",
+    backgroundColor: "#F4F6F6",
+    borderWidth: 1,
+    borderColor: "#29BB8918",
     justifyContent: "space-between",
     minHeight: 160,
   },
@@ -171,6 +178,7 @@ export default StyleSheet.create({
     borderRadius: 12,
     overflow: "hidden",
     height: 164,
+    width: 240,
   },
   questionBackground: {
     flex: 1,
@@ -181,7 +189,6 @@ export default StyleSheet.create({
   },
   questionContent: {
     padding: 16,
-    backgroundColor: "rgba(19, 35, 27, 0.5)",
   },
   questionTitle: {
     fontSize: 15,

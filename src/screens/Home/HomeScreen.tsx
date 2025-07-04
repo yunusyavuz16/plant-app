@@ -93,7 +93,7 @@ export const HomeScreen: React.FC = () => {
 
   const renderQuestionItem = ({ item }: { item: Question }) => (
     <TouchableOpacity
-      style={[styles.questionCard, { width: width - 48 }]}
+      style={[styles.questionCard]}
       onPress={() => Linking.openURL(item.uri)}
     >
       <ImageBackground
@@ -103,7 +103,6 @@ export const HomeScreen: React.FC = () => {
       >
         <View style={styles.questionContent}>
           <Text style={styles.questionTitle}>{item.title}</Text>
-          <Text style={styles.questionSubtitle}>{item.subtitle}</Text>
         </View>
       </ImageBackground>
     </TouchableOpacity>
@@ -157,14 +156,12 @@ export const HomeScreen: React.FC = () => {
           <ActivityIndicator size="large" color="#0000ff" />
         ) : (
           <FlatList
+            contentContainerStyle={styles.questionsGridContent}
             data={questions}
             horizontal
             renderItem={renderQuestionItem}
             keyExtractor={(item) => item.id.toString()}
-            showsVerticalScrollIndicator={false}
-            refreshControl={
-              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-            }
+            showsHorizontalScrollIndicator={false}
           />
         )}
       </View>
