@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 import { colors, layout, spacing, typography } from "../../constants/theme";
 
 export default StyleSheet.create({
+  innerContainer: {},
   container: {
     flex: 1,
     backgroundColor: colors.background.white,
@@ -16,14 +17,14 @@ export default StyleSheet.create({
   },
   welcomeText: {
     fontSize: typography.size.lg,
+    fontFamily: typography.fonts.RubikRegular,
     color: colors.text.primary,
-    opacity: 0.7,
     marginBottom: spacing.xs,
   },
   greetingText: {
     fontSize: typography.size.xxxl,
+    fontFamily: typography.fonts.RubikMedium,
     color: colors.text.primary,
-    fontWeight: '600',
   },
   searchContainer: {
     paddingHorizontal: spacing.xxl,
@@ -46,10 +47,10 @@ export default StyleSheet.create({
     color: colors.text.primary,
   },
   premiumBanner: {
+    marginHorizontal: spacing.xxl,
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: colors.background.darkBrown,
-    marginHorizontal: spacing.xxl,
     borderRadius: layout.radius.lg,
     padding: spacing.lg,
     marginBottom: spacing.xxl,
@@ -73,7 +74,7 @@ export default StyleSheet.create({
   notificationText: {
     color: colors.text.white,
     fontSize: typography.size.xs,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   premiumTextContainer: {
     flex: 1,
@@ -81,7 +82,7 @@ export default StyleSheet.create({
   premiumTitle: {
     color: colors.text.gold,
     fontSize: typography.size.lg,
-    fontWeight: '600',
+    fontWeight: "600",
     marginBottom: spacing.xs,
   },
   premiumSubtitle: {
@@ -90,12 +91,12 @@ export default StyleSheet.create({
     fontSize: typography.size.base,
   },
   sectionContainer: {
-    paddingHorizontal: spacing.xxl,
-    marginBottom: spacing.xxl,
+    marginBottom: spacing.sm,
   },
   sectionTitle: {
+    marginHorizontal: spacing.xxl,
     fontSize: typography.size.md,
-    fontWeight: '600',
+    fontFamily: typography.fonts.RubikMedium,
     color: colors.text.primary,
     marginBottom: spacing.lg,
   },
@@ -126,7 +127,7 @@ export default StyleSheet.create({
     right: spacing.lg,
     color: colors.text.white,
     fontSize: typography.size.md,
-    fontWeight: '500',
+    fontWeight: "500",
   },
   marginLeft: {
     marginLeft: spacing.lg,
@@ -143,10 +144,10 @@ export default StyleSheet.create({
   questionsGridContent: {
     flexDirection: "row",
     gap: spacing.sm,
+    paddingHorizontal: spacing.xxl,
   },
   categoryCard: {
     flex: 1,
-    marginRight: spacing.md - 1,
     padding: spacing.lg,
     borderRadius: layout.radius.lg,
     backgroundColor: colors.background.lightGreen,
@@ -157,7 +158,7 @@ export default StyleSheet.create({
   },
   categoryTitle: {
     fontSize: typography.size.lg,
-    fontWeight: '600',
+    fontWeight: "600",
     textAlign: "left",
     marginBottom: spacing.sm,
   },
@@ -187,11 +188,14 @@ export default StyleSheet.create({
     borderRadius: layout.radius.lg,
   },
   questionContent: {
-    padding: spacing.lg,
+    height: layout.card.questionHeight * 0.36,
+    paddingHorizontal: spacing.lg,
+    justifyContent: "center",
+    alignItems: "flex-start",
   },
   questionTitle: {
     fontSize: typography.size.md,
-    fontWeight: '500',
+    fontFamily: typography.fonts.RubikMedium,
     color: colors.text.white,
     marginBottom: spacing.xs,
   },

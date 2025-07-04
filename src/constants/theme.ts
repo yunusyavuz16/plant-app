@@ -12,6 +12,7 @@ export const colors = {
     darkGreen: '#101E17',
     lightGreen: '#F4F6F6',
     darkBrown: '#24201A',
+    lightGreen2: '#5DCB97',
   },
 
   // Text Colors

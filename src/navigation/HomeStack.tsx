@@ -1,12 +1,13 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeHeader from "@screens/Home/HomeHeader";
-import React from "react";
 import TabIcon from "@components/icons/TabIcon";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import CameraScreen from "@screens/Camera/CameraScreen";
 import DiagnoseScreen from "@screens/Diagnose/DiagnoseScreen";
+import HomeHeader from "@screens/Home/HomeHeader";
 import HomeScreen from "@screens/Home/HomeScreen";
 import MyGardenScreen from "@screens/MyGarden/MyGardenScreen";
 import ProfileScreen from "@screens/Profile/ProfileScreen";
+import React from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export type HomeStackParamList = {
   HomeScreen: undefined;
@@ -22,6 +23,7 @@ const Tab = createBottomTabNavigator<HomeStackParamList>();
  * Main navigation stack shown after onboarding completion
  */
 const HomeStack: React.FC = () => {
+  const insets = useSafeAreaInsets();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -31,9 +33,9 @@ const HomeStack: React.FC = () => {
           borderTopWidth: 0,
           elevation: 0,
           shadowOpacity: 0,
-          height: 80,
-          paddingBottom: 20,
+          height: 72 + insets.bottom,
           paddingTop: 12,
+          bottom: 0,
         },
         tabBarActiveTintColor: "#28AF6E",
         tabBarInactiveTintColor: "#979798",

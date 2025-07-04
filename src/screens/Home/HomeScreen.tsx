@@ -12,14 +12,12 @@ import {
 } from "react-native";
 import ChevronRightIcon from "../../components/icons/ChevronRightIcon";
 import MailIcon from "../../components/icons/MailIcon";
-import {
-  useAppDispatch,
-  useAppSelector
-} from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store";
 import { fetchHomeData } from "../../store/slices/homeSlice";
 import { Category } from "../../types/category";
 import { Question } from "../../types/question";
 import styles from "./HomeScreen.styles";
+import { spacing } from "@/constants/theme";
 
 export const HomeScreen: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -130,17 +128,21 @@ export const HomeScreen: React.FC = () => {
   ));
 
   return (
-    <FlatList
-      data={categories}
-      keyExtractor={(c) => c.id.toString()}
-      renderItem={renderCategoryItem}
-      numColumns={2}
-      showsVerticalScrollIndicator={false}
-      ListHeaderComponent={ListHeader}
-      refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-      }
-    />
+    <View style={styles.innerContainer}>
+      <FlatList
+        data={categories}
+        keyExtractor={(c) => c.id.toString()}
+        renderItem={renderCategoryItem}
+        numColumns={2}
+        columnWrapperStyle={{ gap: 8, marginHorizontal: spacing.xxl }}
+        contentContainerStyle={{ gap: 16 }}
+        showsVerticalScrollIndicator={false}
+        ListHeaderComponent={ListHeader}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      />
+    </View>
   );
 };
 
