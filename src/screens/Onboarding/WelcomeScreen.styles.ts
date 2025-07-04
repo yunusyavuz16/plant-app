@@ -1,11 +1,13 @@
 import { Dimensions, StyleSheet, Platform } from "react-native";
 import { colors, spacing, typography } from "../../constants/theme";
 
-const { height, width } = Dimensions.get('window');
+const { height, width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   imageContainer: {
     flex: 1,
+    width: "100%",
+    height: "100%",
     alignItems: "center",
     justifyContent: "flex-end",
   },
@@ -23,6 +25,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    margin: 0,
   },
   header: {
     paddingHorizontal: spacing.xxl,

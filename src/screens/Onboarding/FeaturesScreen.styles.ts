@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   image: {
+    flex: 1,
     height: "100%",
   },
   bottom: {

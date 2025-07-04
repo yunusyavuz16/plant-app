@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     marginBottom: spacing.md,
     paddingHorizontal: spacing.xxl,
-    backgroundColor: "transparent",
   },
   titleRow: {
     position: "relative",

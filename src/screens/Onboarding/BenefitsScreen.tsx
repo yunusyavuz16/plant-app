@@ -1,10 +1,12 @@
+import { OnboardingScreenKeyType, OnboardingScreens } from "@/constants/screen";
 import PrimaryButton from "@components/PrimaryButton/PrimaryButton";
 import { OnboardingStackParamList } from "@navigation/OnboardingStack";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
-import { Image, ImageBackground, Text, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Image, Text, View } from "react-native";
 import styles from "./BenefitsScreen.styles";
+import OnBoardLayout from "./components/OnBoardLayout";
+import OnboardingMiddleImage from "./components/OnboardingMiddleImage";
 
 /**
  * Onboarding 2: Get plant care guides
@@ -12,8 +14,6 @@ import styles from "./BenefitsScreen.styles";
 const BenefitsScreen: React.FC<
   NativeStackScreenProps<OnboardingStackParamList, "Benefits">
 > = ({ navigation }) => {
-  const insets = useSafeAreaInsets();
-
   /**
    * Navigate to the next onboarding step.
    */
@@ -22,45 +22,36 @@ const BenefitsScreen: React.FC<
   };
 
   return (
-    <ImageBackground
-      source={require("../../../assets/onboarding-2/Background.png")}
-      style={[
-        styles.backgroundImage,
-        { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 12 },
-      ]}
-      resizeMode="cover"
+    <OnBoardLayout
+      screenName={OnboardingScreens.BENEFITS as OnboardingScreenKeyType}
     >
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <View style={styles.titleRow}>
-            <Text style={styles.title}>
-              Get plant <Text style={styles.titleHighlight}>care guides</Text>
-            </Text>
-            <Image
-              source={require("../../../assets/onboarding-2/Brush.png")}
-              style={styles.brushImage}
-              resizeMode="contain"
-            />
-          </View>
-        </View>
-        <View style={styles.imageContainer}>
+      <View style={styles.header}>
+        <View style={styles.titleRow}>
+          <Text style={styles.title}>
+            Get plant <Text style={styles.titleHighlight}>care guides</Text>
+          </Text>
           <Image
-            source={require("../../../assets/onboarding-2/onboarding-2-middle.png")}
-            style={styles.image}
+            source={require("../../../assets/onboarding-2/Brush.png")}
+            style={styles.brushImage}
+            resizeMode="contain"
           />
         </View>
-        <View style={styles.bottom}>
-          <View style={styles.buttonContainer}>
-            <PrimaryButton label="Continue" onPress={handleContinue} />
-          </View>
-          <View style={styles.pagination}>
-            <View style={styles.dot} />
-            <View style={[styles.dot, styles.dotActive]} />
-            <View style={styles.dot} />
-          </View>
+      </View>
+      <OnboardingMiddleImage
+        screenName={OnboardingScreens.BENEFITS as OnboardingScreenKeyType}
+        imageStyle={styles.image}
+      />
+      <View style={styles.bottom}>
+        <View style={styles.buttonContainer}>
+          <PrimaryButton label="Continue" onPress={handleContinue} />
+        </View>
+        <View style={styles.pagination}>
+          <View style={styles.dot} />
+          <View style={[styles.dot, styles.dotActive]} />
+          <View style={styles.dot} />
         </View>
       </View>
-    </ImageBackground>
+    </OnBoardLayout>
   );
 };
 
