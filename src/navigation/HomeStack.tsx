@@ -1,3 +1,4 @@
+import DataErrorView from "@/components/DataErrorView/DataErrorView";
 import { colors } from "@/constants/theme";
 import { useHomeIndex } from "@/hooks/useHomeIndex";
 import HomeHeader from "@/screens/Home/components/HomeHeader";
@@ -10,6 +11,7 @@ import HomeScreen from "@screens/Home/HomeScreen";
 import MyGardenScreen from "@screens/MyGarden/MyGardenScreen";
 import ProfileScreen from "@screens/Profile/ProfileScreen";
 import React from "react";
+import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export type HomeStackParamList = {
@@ -26,12 +28,29 @@ const Tab = createBottomTabNavigator<HomeStackParamList>();
  * Main navigation stack shown after onboarding completion
  */
 const HomeStack: React.FC = () => {
-  const { categories, questions, loading } = useHomeIndex();
-
+  const { categories, questions, loading, error, retry } = useHomeIndex();
   const insets = useSafeAreaInsets();
 
+  // Show loading state
   if (loading && categories.length === 0 && questions.length === 0) {
-    return <HomeShimmer />;
+    return (
+      <View style={{ flex: 1, backgroundColor: colors.background.white }}>
+        <HomeShimmer />
+      </View>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <View style={{ flex: 1, backgroundColor: colors.background.white }}>
+        <DataErrorView
+          message="Unable to load content"
+          errorDetails={error}
+          onRetry={retry}
+        />
+      </View>
+    );
   }
 
   return (
@@ -61,7 +80,6 @@ const HomeStack: React.FC = () => {
         options={{
           headerShown: true,
           header: () => <HomeHeader />,
-
           tabBarLabel: "Home",
           tabBarIcon: ({ color }) => <TabIcon name="home" color={color} />,
         }}

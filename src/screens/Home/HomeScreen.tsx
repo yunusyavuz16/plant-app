@@ -1,4 +1,3 @@
-import { spacing } from "@/constants/theme";
 import { useAppSelector } from "@/store";
 import React from "react";
 import { FlatList, View } from "react-native";

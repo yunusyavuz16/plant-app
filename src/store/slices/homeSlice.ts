@@ -29,10 +29,9 @@ export const fetchHomeData = createAsyncThunk(
         questionService.getQuestions(),
       ]);
 
+      // Prefetch images
       const shouldPrefetch = await checkAndSetPrefetchStatus();
-
       if (shouldPrefetch) {
-        // Only prefetch images on first app launch
         for (const item of [...questionsRes]) {
           const uri = item.image_uri;
           await RNImage.prefetch(uri);
@@ -49,7 +48,9 @@ export const fetchHomeData = createAsyncThunk(
         questions: questionsRes,
       };
     } catch (error) {
-      return rejectWithValue("Failed to fetch home data");
+      return rejectWithValue(
+        error instanceof Error ? error.message : "Failed to fetch home data"
+      );
     }
   }
 );
@@ -68,6 +69,7 @@ const homeSlice = createSlice({
         state.categories = action.payload.categories;
         state.questions = action.payload.questions;
         state.loading = false;
+        state.error = null;
       })
       .addCase(fetchHomeData.rejected, (state, action) => {
         state.loading = false;

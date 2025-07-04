@@ -1,12 +1,18 @@
-import SearchIcon from "@components/icons/SearchIcon";
 import { TEXTS } from "@/constants/text";
-import React, { useMemo } from "react";
-import { ImageBackground, Text, TextInput, View, Pressable } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import styles from "../HomeScreen.styles";
-import { useNavigation } from "@react-navigation/native";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { setIsSearching, setSearchQuery } from "@/store/slices/searchSlice";
+import SearchIcon from "@components/icons/SearchIcon";
+import { useNavigation } from "@react-navigation/native";
+import React, { useMemo } from "react";
+import {
+  ImageBackground,
+  Pressable,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import styles from "../HomeScreen.styles";
 
 const HomeHeader = () => {
   const insets = useSafeAreaInsets();
@@ -24,7 +30,7 @@ const HomeHeader = () => {
 
   const handleSearchFocus = () => {
     dispatch(setIsSearching(true));
-    navigation.navigate('Search' as never);
+    navigation.navigate("Search" as never);
   };
 
   const handleSearchChange = (text: string) => {
@@ -41,7 +47,10 @@ const HomeHeader = () => {
       </View>
       {/* Search */}
       <View style={styles.searchContainer}>
-        <Pressable style={styles.searchInputContainer} onPress={handleSearchFocus}>
+        <Pressable
+          style={styles.searchInputContainer}
+          onPress={handleSearchFocus}
+        >
           <SearchIcon />
           <TextInput
             style={styles.searchInput}
