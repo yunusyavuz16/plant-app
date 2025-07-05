@@ -17,7 +17,7 @@ jest.mock('react-native/Libraries/StyleSheet/StyleSheet', () => ({
   create: (styles) => styles,
   hairlineWidth: 1,
   absoluteFill: { position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 },
-  flatten: jest.fn(),
+  flatten: jest.fn((style) => style),
   compose: jest.fn(),
 }));
 
@@ -27,4 +27,11 @@ jest.mock('react-native/Libraries/Utilities/PixelRatio', () => ({
   getFontScale: jest.fn(() => 1),
   getPixelSizeForLayoutSize: jest.fn((size) => size),
   roundToNearestPixel: jest.fn((size) => size),
+}));
+
+// Mock accessibility helpers
+jest.mock('@testing-library/react-native/build/helpers/accessibility', () => ({
+  isSubtreeInaccessible: () => false,
+  flatten: (arr) => arr || [],
+  isHiddenFromAccessibility: () => false,
 }));

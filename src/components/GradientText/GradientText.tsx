@@ -9,7 +9,7 @@ import Svg, {
   Text as SvgText,
 } from "react-native-svg";
 
-interface SvgGradientTextProps {
+export interface SvgGradientTextProps {
   text: string;
   width?: number; // optional: to fit your layout
   height?: number; // optional: to fit your layout
