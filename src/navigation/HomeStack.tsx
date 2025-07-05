@@ -1,4 +1,3 @@
-import { colors, typography } from "@/constants/theme";
 import { useHomeIndex } from "@/hooks/useHomeIndex";
 import HomeHeader from "@/screens/Home/components/HomeHeader";
 import { HomeShimmer } from "@/screens/Home/components/HomeShimmer";
@@ -12,7 +11,7 @@ import ProfileScreen from "@screens/Profile/ProfileScreen";
 import React from "react";
 import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { styles } from "./HomeStack.styles";
+import { getContainerStyle, screenOptions, styles } from "./HomeStack.styles";
 
 export type HomeStackParamList = {
   HomeScreen: undefined;
@@ -30,6 +29,7 @@ const Tab = createBottomTabNavigator<HomeStackParamList>();
 const HomeStack: React.FC = () => {
   const { categories, questions, loading } = useHomeIndex();
   const insets = useSafeAreaInsets();
+  const containerStyle = getContainerStyle(insets);
 
   // Show loading state
   if (loading && categories.length === 0 && questions.length === 0) {
@@ -41,69 +41,54 @@ const HomeStack: React.FC = () => {
   }
 
   return (
-    <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
-        tabBarStyle: {
-          backgroundColor: colors.background.white + "92",
-          paddingBottom: 0,
-          borderTopWidth: 0,
-          elevation: 0,
-          shadowOpacity: 0,
-          height: 49 + insets.bottom,
-          bottom: 0,
-        },
-        tabBarActiveTintColor: colors.primary.green,
-        tabBarInactiveTintColor: colors.primary.inactive,
-        tabBarLabelStyle: {
-          fontSize: typography.size.sm,
-          fontFamily: typography.fonts.RubikRegular,
-        },
-      }}
-    >
-      <Tab.Screen
-        name="HomeScreen"
-        component={HomeScreen}
-        options={{
-          headerShown: true,
-          header: () => <HomeHeader />,
-          tabBarLabel: "Home",
-          tabBarIcon: ({ color }) => <TabIcon name="home" color={color} />,
-        }}
-      />
-      <Tab.Screen
-        name="Diagnose"
-        component={DiagnoseScreen}
-        options={{
-          tabBarLabel: "Diagnose",
-          tabBarIcon: ({ color }) => <TabIcon name="diagnose" color={color} />,
-        }}
-      />
-      <Tab.Screen
-        name="Camera"
-        component={CameraScreen}
-        options={{
-          tabBarLabel: "",
-          tabBarIcon: () => <TabIcon name="camera" color="white" size={64} />,
-        }}
-      />
-      <Tab.Screen
-        name="MyGarden"
-        component={MyGardenScreen}
-        options={{
-          tabBarLabel: "My Garden",
-          tabBarIcon: ({ color }) => <TabIcon name="garden" color={color} />,
-        }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={ProfileScreen}
-        options={{
-          tabBarLabel: "Profile",
-          tabBarIcon: ({ color }) => <TabIcon name="profile" color={color} />,
-        }}
-      />
-    </Tab.Navigator>
+    <View style={containerStyle}>
+      <Tab.Navigator screenOptions={screenOptions}>
+        <Tab.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{
+            headerShown: true,
+            header: () => <HomeHeader />,
+            tabBarLabel: "Home",
+            tabBarIcon: ({ color }) => <TabIcon name="home" color={color} />,
+          }}
+        />
+        <Tab.Screen
+          name="Diagnose"
+          component={DiagnoseScreen}
+          options={{
+            tabBarLabel: "Diagnose",
+            tabBarIcon: ({ color }) => (
+              <TabIcon name="diagnose" color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Camera"
+          component={CameraScreen}
+          options={{
+            tabBarLabel: "",
+            tabBarIcon: () => <TabIcon name="camera" color="white" size={64} />,
+          }}
+        />
+        <Tab.Screen
+          name="MyGarden"
+          component={MyGardenScreen}
+          options={{
+            tabBarLabel: "My Garden",
+            tabBarIcon: ({ color }) => <TabIcon name="garden" color={color} />,
+          }}
+        />
+        <Tab.Screen
+          name="Profile"
+          component={ProfileScreen}
+          options={{
+            tabBarLabel: "Profile",
+            tabBarIcon: ({ color }) => <TabIcon name="profile" color={color} />,
+          }}
+        />
+      </Tab.Navigator>
+    </View>
   );
 };
 
