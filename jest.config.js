@@ -2,7 +2,7 @@
 module.exports = {
   preset: 'jest-expo',
   transformIgnorePatterns: [
-    'node_modules/(?!((jest-)?react-native|@react-native|expo(nent)?|@expo(nent)?/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg))'
+    'node_modules/(?!((jest-)?react-native|@react-native|expo(nent)?|@expo(nent)?/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|react-redux|@reduxjs/toolkit))'
   ],
   setupFiles: ['<rootDir>/jest.setup.js'],
   moduleNameMapper: {
@@ -17,4 +17,6 @@ module.exports = {
     '/__mocks__/',
     '/mocks/',
   ],
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['@testing-library/jest-native/extend-expect'],
 };

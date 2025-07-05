@@ -24,6 +24,7 @@ const PlanBox = ({
   if (plan === selectedPlan) {
     return (
       <TouchableOpacity
+        testID="plan-box"
         style={styles.planBoxContainer}
         onPress={() => dispatch(setSelectedPlan(plan))}
         activeOpacity={0.8}
@@ -58,6 +59,7 @@ const PlanBox = ({
   }
   return (
     <TouchableOpacity
+      testID="plan-box"
       style={styles.planBoxContainer}
       onPress={() => dispatch(setSelectedPlan(plan))}
       activeOpacity={0.8}
