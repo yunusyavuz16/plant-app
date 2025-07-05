@@ -51,10 +51,10 @@ plant-app/
 ### Installation
 
 1. Clone the repository:
-\`\`\`bash
+```bash
 git clone <repository-url>
 cd plant-app
-\`\`\`
+```
 
 2. Install dependencies:
 \`\`\`bash
