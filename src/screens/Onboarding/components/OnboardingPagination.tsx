@@ -10,9 +10,10 @@ const OnboardingPagination = ({
   totalSteps: number;
 }) => {
   return (
-    <View style={styles.pagination}>
+    <View testID="pagination-container" style={styles.pagination}>
       {Array.from({ length: totalSteps }).map((_, index) => (
         <View
+          testID="pagination-dot"
           key={index}
           style={[styles.dot, currentIndex === index && styles.dotActive]}
         />

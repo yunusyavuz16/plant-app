@@ -5,12 +5,15 @@ import { TEXTS } from "@/constants/text";
 
 const OnboardingDisclaimer = () => {
   return (
-    <View style={styles.bottomInner}>
-      <Text style={styles.disclaimer}>
+    <View testID="disclaimer-container" style={styles.bottomInner}>
+      <Text testID="disclaimer-text" style={styles.disclaimer}>
         {TEXTS.WELCOME.DISCLAIMER}
         {"\n"}
-        <Text style={styles.link}>{TEXTS.WELCOME.TERMS}</Text> &{" "}
-        <Text style={styles.link}>{TEXTS.WELCOME.PRIVACY}</Text>.
+        <Text testID="disclaimer-links">
+          <Text style={styles.link}>{TEXTS.WELCOME.TERMS}</Text> &{" "}
+          <Text style={styles.link}>{TEXTS.WELCOME.PRIVACY}</Text>
+        </Text>
+        .
       </Text>
     </View>
   );

@@ -13,16 +13,19 @@ const OnboardgingBackgrounds = {
 interface OnBoardLayoutProps {
   children: React.ReactNode;
   screenName: keyof typeof OnboardingScreens;
+  testID?: string;
 }
 
 const OnBoardLayout: React.FC<OnBoardLayoutProps> = ({
   children,
   screenName,
+  testID,
 }) => {
   const insets = useSafeAreaInsets();
   const style = getStyle(insets);
   return (
     <ImageBackground
+      testID={testID}
       source={OnboardgingBackgrounds[screenName]}
       style={[styles.backgroundImage, style.backgroundImage]}
       resizeMode="cover"

@@ -21,8 +21,9 @@ const OnboardingMiddleImage = ({
   imageContainerStyle,
 }: OnboardingMiddleImageProps) => {
   return (
-    <View style={[styles.imageContainer, imageContainerStyle]}>
+    <View testID="onboarding-image-container" style={[styles.imageContainer, imageContainerStyle]}>
       <Image
+        testID="onboarding-image"
         source={OnboardingMiddleImages[screenName]}
         style={[styles.image as ImageStyle, imageStyle]}
       />

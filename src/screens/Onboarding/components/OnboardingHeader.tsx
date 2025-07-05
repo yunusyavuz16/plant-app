@@ -20,13 +20,14 @@ const OnboardingHeader = ({
 }) => {
   if (screenName === OnboardingScreens.FEATURES) {
     return (
-      <View style={FeaturesStyles.header}>
-        <View style={FeaturesStyles.titleRow}>
+      <View testID="features-header" style={FeaturesStyles.header}>
+        <View testID="features-title-row" style={FeaturesStyles.titleRow}>
           <Text style={FeaturesStyles.title}>
             Take a photo to{" "}
             <Text style={FeaturesStyles.titleHighlight}>identify</Text>
           </Text>
           <Image
+            testID="features-brush-image"
             source={require("../../../../assets/onboarding-1/Brush.png")}
             style={FeaturesStyles.brushImage}
             resizeMode="contain"
@@ -38,13 +39,14 @@ const OnboardingHeader = ({
   }
   if (screenName === OnboardingScreens.BENEFITS) {
     return (
-      <View style={BenefitsStyles.header}>
-        <View style={BenefitsStyles.titleRow}>
+      <View testID="benefits-header" style={BenefitsStyles.header}>
+        <View testID="benefits-title-row" style={BenefitsStyles.titleRow}>
           <Text style={BenefitsStyles.title}>
             Get plant{" "}
             <Text style={BenefitsStyles.titleHighlight}>care guides</Text>
           </Text>
           <Image
+            testID="benefits-brush-image"
             source={require("../../../../assets/onboarding-2/Brush.png")}
             style={BenefitsStyles.brushImage}
             resizeMode="contain"
@@ -55,7 +57,7 @@ const OnboardingHeader = ({
   }
 
   return (
-    <View style={WelcomStyles.header}>
+    <View testID="welcome-header" style={WelcomStyles.header}>
       <Text style={WelcomStyles.title}>
         {titleHighlightPosition === "end" ? (
           title + " "

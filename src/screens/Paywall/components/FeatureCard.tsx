@@ -6,13 +6,14 @@ interface FeatureCardProps {
   icon: ImageSourcePropType | React.ReactElement;
   title: string;
   desc: string;
+  testID?: string;
 }
 
-const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, desc }) => {
+const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, desc, testID }) => {
   return (
-    <View style={styles.featureCard}>
+    <View style={styles.featureCard} testID={testID}>
       {React.isValidElement(icon) ? (
-        <View style={styles.featureIconImageSvg}>
+        <View style={styles.featureIconImageSvg} testID="feature-icon-svg">
           {icon}
         </View>
       ) : (
@@ -20,10 +21,11 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, desc }) => {
           source={icon as ImageSourcePropType}
           style={styles.featureIconImage}
           resizeMode="contain"
+          testID="feature-icon-image"
         />
       )}
-      <Text style={styles.featureTitle}>{title}</Text>
-      <Text style={styles.featureDesc}>{desc}</Text>
+      <Text style={styles.featureTitle} testID="feature-title">{title}</Text>
+      <Text style={styles.featureDesc} testID="feature-desc">{desc}</Text>
     </View>
   );
 };

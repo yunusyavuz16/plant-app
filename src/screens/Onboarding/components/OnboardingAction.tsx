@@ -19,7 +19,7 @@ const OnboardingAction = ({
     navigation.navigate(screenName as never);
   };
   return (
-    <View style={[styles.buttonContainer, style]}>
+    <View testID="button-container" style={[styles.buttonContainer, style]}>
       <PrimaryButton label={label} onPress={handleGetStarted} />
     </View>
   );
