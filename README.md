@@ -24,7 +24,7 @@ A React Native mobile application built with Expo, TypeScript, and Redux for pla
 ## 📁 Project Structure
 
 ```
-frontend/
+plant-app/
 ├── src/
 │   ├── components/      # Reusable UI components
 │   ├── constants/       # App-wide constants and configuration
@@ -53,7 +53,7 @@ frontend/
 1. Clone the repository:
 \`\`\`bash
 git clone <repository-url>
-cd frontend
+cd plant-app
 \`\`\`
 
 2. Install dependencies:
