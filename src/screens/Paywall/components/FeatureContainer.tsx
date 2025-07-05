@@ -3,14 +3,17 @@ import React from "react";
 import { ScrollView } from "react-native";
 import styles from "../PaywallScreen.styles";
 import FeatureCard from "./FeatureCard";
+import { UnlimitedIcon } from "@/components/icons/UnlimitedIcon";
+import { SpeedIcon } from "@/components/icons/SpeedIcon";
 
 const FEATURE_ICONS = {
-  scan: require("../../../../assets/paywall/unlimited-icon.png"),
-  speed: require("../../../../assets/paywall/speed-icon.png"),
   care: require("../../../../assets/paywall/care-icon.png"),
 };
 
-const FeatureContainer = () => {
+/**
+ * Container component for feature cards in paywall screen
+ */
+const FeatureContainer: React.FC = () => {
   return (
     <ScrollView
       horizontal
@@ -18,12 +21,12 @@ const FeatureContainer = () => {
       showsHorizontalScrollIndicator={false}
     >
       <FeatureCard
-        icon={FEATURE_ICONS.scan}
+        icon={<UnlimitedIcon width={17} height={17} />}
         title={TEXTS.PAYWALL.FEATURES.UNLIMITED}
         desc={TEXTS.PAYWALL.FEATURES.UNLIMITED_DESC}
       />
       <FeatureCard
-        icon={FEATURE_ICONS.speed}
+        icon={<SpeedIcon width={17} height={17} />}
         title={TEXTS.PAYWALL.FEATURES.FASTER}
         desc={TEXTS.PAYWALL.FEATURES.FASTER_DESC}
       />

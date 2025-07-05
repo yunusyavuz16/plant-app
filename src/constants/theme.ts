@@ -15,6 +15,7 @@ export const colors = {
     darkBrown: '#24201A',
     lightGreen2: '#5DCB97',
     splash: '#FFFFFF', // Add splash screen background color
+    lightBlack: '#19201B',
   },
 
   // Text Colors
@@ -55,6 +56,7 @@ export const colors = {
     green: 'rgba(40,175,110,0.08)',
     white: 'rgba(255,255,255,0.08)',
     darkTransparent: 'rgba(255,255,255,0.52)',
+    darkTransparent2: '#00000010',
   },
 };
 

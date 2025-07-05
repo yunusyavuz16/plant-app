@@ -89,7 +89,19 @@ export default StyleSheet.create({
   featureIconImage: {
     width: layout.icon.md,
     height: 35.68,
+
+    borderRadius: layout.radius.md,
+    backgroundColor: colors.overlay.darkTransparent2,
     marginBottom: spacing.xxl,
+  },
+  featureIconImageSvg: {
+    width: layout.icon.md,
+    height: 35.68,
+    marginBottom: spacing.xxl,
+    borderRadius: layout.radius.md,
+    backgroundColor: colors.background.lightBlack,
+    justifyContent: "center",
+    alignItems: "center",
   },
   featureTitle: {
     fontSize: typography.size.xxl,
