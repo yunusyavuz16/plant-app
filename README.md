@@ -57,23 +57,23 @@ cd plant-app
 ```
 
 2. Install dependencies:
-\`\`\`bash
+```bash
 npm install
 # or
 yarn install
-\`\`\`
+```
 
 3. Create a .env file based on .env.example:
-\`\`\`bash
+```bash
 cp .env.example .env
-\`\`\`
+```
 
 4. Start the development server:
-\`\`\`bash
+```bash
 npm start
 # or
 yarn start
-\`\`\`
+```
 
 ## 📱 Running the App
 
@@ -84,26 +84,26 @@ yarn start
 ## 🧪 Testing
 
 Run tests using Jest:
-\`\`\`bash
+```bash
 npm test
 # or
 yarn test
-\`\`\`
+```
 
 Run tests with coverage:
-\`\`\`bash
+```bash
 npm test -- --coverage
 # or
 yarn test --coverage
-\`\`\`
+```
 
 ## 🔑 Environment Variables
 
 Required environment variables in your .env file:
 
-\`\`\`
+```bash
 API_URL=https://dummy-api-jtg6bessta-ey.a.run.app
-\`\`\`
+```
 
 ## 📚 API Endpoints
 
@@ -125,11 +125,11 @@ The application uses the following API endpoints:
 
 To create a production build:
 
-\`\`\`bash
+```bash
 expo build:ios
 # or
 expo build:android
-\`\`\`
+```
 
 ## 🧪 Testing Strategy
 
