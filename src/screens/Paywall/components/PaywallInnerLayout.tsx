@@ -10,6 +10,7 @@ const PaywallInnerLayout = ({ children }: { children: React.ReactNode }) => {
   const { height: SCREEN_HEIGHT } = Dimensions.get("window");
   return (
     <View
+      testID="paywall-inner-layout"
       style={[
         styles.content,
         {

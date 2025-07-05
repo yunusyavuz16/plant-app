@@ -9,12 +9,14 @@ const PaywallLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <View
+      testID="root-view"
       style={[
         styles.root,
         { paddingTop: insets.top, paddingBottom: insets.bottom },
       ]}
     >
       <ImageBackground
+        testID="image-background"
         source={require("../../../../assets/paywall/paywall-top.png")}
         style={[styles.topImage, { height: SCREEN_HEIGHT * 0.58 }]}
         resizeMode="cover"
