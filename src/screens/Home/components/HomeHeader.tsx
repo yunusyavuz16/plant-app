@@ -40,8 +40,8 @@ const HomeHeader = () => {
   return (
     <ImageBackground source={require("../../../../assets/home/Background.png")}>
       <View style={[styles.header, { paddingTop: insets.top }]}>
-        <Text style={styles.welcomeText}>{TEXTS.HOME.WELCOME}</Text>
-        <Text style={styles.greetingText}>
+        <Text style={styles.welcomeText} testID="welcome-text">{TEXTS.HOME.WELCOME}</Text>
+        <Text style={styles.greetingText} testID="greeting-text">
           {greeting.text} {greeting.emoji}
         </Text>
       </View>
@@ -50,6 +50,7 @@ const HomeHeader = () => {
         <Pressable
           style={styles.searchInputContainer}
           onPress={handleSearchFocus}
+          testID="search-container"
         >
           <SearchIcon />
           <TextInput
@@ -59,6 +60,7 @@ const HomeHeader = () => {
             value={query}
             onChangeText={handleSearchChange}
             onFocus={handleSearchFocus}
+            testID="search-input"
           />
         </Pressable>
       </View>

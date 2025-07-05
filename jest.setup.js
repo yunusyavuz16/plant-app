@@ -17,7 +17,12 @@ jest.mock('react-native/Libraries/StyleSheet/StyleSheet', () => ({
   create: (styles) => styles,
   hairlineWidth: 1,
   absoluteFill: { position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 },
-  flatten: jest.fn((style) => style),
+  flatten: (style) => {
+    if (Array.isArray(style)) {
+      return Object.assign({}, ...style);
+    }
+    return style || {};
+  },
   compose: jest.fn(),
 }));
 

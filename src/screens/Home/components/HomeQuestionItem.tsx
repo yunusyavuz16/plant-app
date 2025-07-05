@@ -8,12 +8,14 @@ const HomeQuestionItem = // Renderers
     <TouchableOpacity
       style={styles.questionCard}
       onPress={() => Linking.openURL(uri)}
+      testID="question-card"
     >
       <ImageBackground
         source={{ uri }}
         cachePolicy="memory-disk"
         style={styles.questionBackground}
         imageStyle={styles.questionBackgroundImage}
+        testID="question-image"
       >
         <View style={styles.questionContent}>
           <Text style={styles.questionTitle}>{title}</Text>
