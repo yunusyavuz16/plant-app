@@ -1,3 +1,4 @@
+import CategoryItem from "@/components/CategoryItem/CategoryItem";
 import SearchIcon from "@/components/icons/SearchIcon";
 import { TEXTS } from "@/constants/text";
 import { useAppDispatch, useAppSelector } from "@/store";
@@ -6,8 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useMemo } from "react";
 import { FlatList, Pressable, Text, TextInput, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import HomeCategoryItem from "../Home/components/HomeCategoryItem";
-import styles from "./SearchScreenStyles";
+import styles, { getStyle } from "./SearchScreenStyles";
 
 const SearchScreen = () => {
   const insets = useSafeAreaInsets();
@@ -15,7 +15,7 @@ const SearchScreen = () => {
   const dispatch = useAppDispatch();
   const { categories } = useAppSelector((state) => state.home);
   const { query } = useAppSelector((state) => state.search);
-
+  const style = getStyle(insets);
   const filteredCategories = useMemo(() => {
     if (!query.trim()) return categories;
 
@@ -37,7 +37,7 @@ const SearchScreen = () => {
   );
 
   return (
-    <View style={[styles.container, { paddingTop: insets.top }]}>
+    <View style={[styles.container, style.container]}>
       <View style={styles.searchHeader}>
         <View style={styles.searchInputContainer}>
           <SearchIcon />
@@ -57,7 +57,7 @@ const SearchScreen = () => {
       <FlatList
         data={filteredCategories}
         renderItem={({ item }) => (
-          <HomeCategoryItem title={item.title} url={item.image.url} />
+          <CategoryItem title={item.title} url={item.image.url} />
         )}
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.listContent}

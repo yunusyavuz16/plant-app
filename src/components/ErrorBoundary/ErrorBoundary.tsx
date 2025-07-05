@@ -1,6 +1,7 @@
 // components/ErrorBoundary.tsx
 import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, Text, View } from "react-native";
+import { styles } from "./ErrorBoundart.styles";
 
 interface State {
   hasError: boolean;
@@ -44,22 +45,3 @@ export default class ErrorBoundary extends React.Component<
     return this.props.children;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fff",
-  },
-  title: {
-    fontSize: 20,
-    marginBottom: 12,
-  },
-  message: {
-    fontSize: 14,
-    marginBottom: 24,
-    textAlign: "center",
-  },
-});

@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     marginBottom: spacing.xxl,
   },
   sectionTitle: {
+    width: 120,
     height: 24,
     borderRadius: layout.radius.sm,
     marginBottom: spacing.lg,
@@ -23,6 +24,7 @@ const styles = StyleSheet.create({
     marginBottom: spacing.xxl,
   },
   questionCard: {
+    marginRight: spacing.sm,
     width: layout.card.questionWidth,
     height: layout.card.questionHeight,
     borderRadius: layout.radius.lg,

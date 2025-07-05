@@ -1,5 +1,6 @@
 import { colors, layout, spacing, typography } from "@/constants/theme";
 import { StyleSheet } from "react-native";
+import { EdgeInsets } from "react-native-safe-area-context";
 
 export const styles = StyleSheet.create({
   closeButton: {
@@ -21,3 +22,10 @@ export const styles = StyleSheet.create({
     fontWeight: "400",
   },
 });
+
+
+export const getTopStyle = (insets: EdgeInsets) => {
+  return {
+    top: insets.top + spacing.xxl,
+  };
+};

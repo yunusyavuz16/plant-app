@@ -1,5 +1,4 @@
 // src/components/ShimmerHomeScreen.tsx
-import { spacing } from "@/constants/theme";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { View } from "react-native";
@@ -18,7 +17,7 @@ export const HomeShimmer: React.FC = () => (
     {/* “Get Started” header */}
     <ShimmerPlaceholder
       LinearGradient={LinearGradient}
-      style={[styles.sectionTitle, { width: 120 }]}
+      style={styles.sectionTitle}
     />
 
     {/* Horizontal question cards */}
@@ -27,7 +26,7 @@ export const HomeShimmer: React.FC = () => (
         <ShimmerPlaceholder
           key={i}
           LinearGradient={LinearGradient}
-          style={[styles.questionCard, { marginRight: spacing.sm }]}
+          style={styles.questionCard}
         />
       ))}
     </View>

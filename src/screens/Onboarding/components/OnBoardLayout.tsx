@@ -1,7 +1,7 @@
 import { OnboardingScreens } from "@/constants/screen";
 import React from "react";
 import { ImageBackground, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
 import styles from "../WelcomeScreen.styles";
 
 const OnboardgingBackgrounds = {
@@ -20,13 +20,11 @@ const OnBoardLayout: React.FC<OnBoardLayoutProps> = ({
   screenName,
 }) => {
   const insets = useSafeAreaInsets();
+  const style = getStyle(insets);
   return (
     <ImageBackground
       source={OnboardgingBackgrounds[screenName]}
-      style={[
-        styles.backgroundImage,
-        { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 12 },
-      ]}
+      style={[styles.backgroundImage, style.backgroundImage]}
       resizeMode="cover"
     >
       <View style={styles.container}>{children}</View>
@@ -35,3 +33,12 @@ const OnBoardLayout: React.FC<OnBoardLayoutProps> = ({
 };
 
 export default OnBoardLayout;
+
+const getStyle = (insets: EdgeInsets) => {
+  return {
+    backgroundImage: {
+      paddingTop: insets.top + 12,
+      paddingBottom: insets.bottom + 12,
+    },
+  };
+};

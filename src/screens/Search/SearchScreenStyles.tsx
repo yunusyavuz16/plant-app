@@ -1,5 +1,6 @@
 import { colors, spacing, typography } from "@/constants/theme";
 import { StyleSheet } from "react-native";
+import { EdgeInsets } from "react-native-safe-area-context";
 
 const styles = StyleSheet.create({
   container: {
@@ -53,5 +54,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
+
+export const getStyle = (insets: EdgeInsets) => {
+  return {
+    container: {
+      paddingTop: insets.top + 12,
+      paddingBottom: insets.bottom + 12,
+    },
+  };
+};
 
 export default styles;

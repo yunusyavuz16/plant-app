@@ -2,7 +2,7 @@ import { spacing } from "@/constants/theme";
 import React from "react";
 import { Insets, Text, TouchableOpacity } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { styles } from "./CloseButton.styles";
+import { getTopStyle, styles } from "./CloseButton.styles";
 
 const CloseButton = ({
   handleClose,
@@ -10,9 +10,10 @@ const CloseButton = ({
   handleClose: () => void;
 }) => {
   const insets = useSafeAreaInsets();
+  const topStyle = getTopStyle(insets);
   return (
     <TouchableOpacity
-      style={[styles.closeButton, { top: insets.top + spacing.xxl }]}
+      style={[styles.closeButton, topStyle]}
       onPress={handleClose}
     >
       <Text style={styles.closeText}>×</Text>
