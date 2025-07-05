@@ -1,5 +1,9 @@
+import Constants from 'expo-constants';
+
+const ENV = Constants.expoConfig?.extra || {};
+
 export const API_CONFIG = {
-  BASE_URL: 'https://dummy-api-jtg6bessta-ey.a.run.app',
+  BASE_URL: ENV.API_URL,
   TIMEOUT: 10000, // 10 seconds
 } as const;
 
