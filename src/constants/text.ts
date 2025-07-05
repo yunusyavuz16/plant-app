@@ -43,27 +43,6 @@ export const TEXTS = {
       PRIVACY: "Privacy",
       RESTORE: "Restore",
     },
-    FEATURES: {
-      UNLIMITED: "Unlimited",
-      UNLIMITED_DESC: "Plant Identify",
-      FASTER: "Faster",
-      FASTER_DESC: "Process",
-      DETAILED: "Detailed",
-      DETAILED_DESC: "Plant care",
-    },
-    PLANS: {
-      MONTHLY: {
-        TITLE: "1 Month",
-        PRICE: "$2.99/month,",
-        RENEWAL: "auto renewable",
-      },
-      YEARLY: {
-        TITLE: "1 Year",
-        TRIAL: "First 3 days free,",
-        PRICE: "then $529,99/year",
-        SAVE_BADGE: "Save 50%",
-      },
-    },
   },
   COMING_SOON: {
     CAMERA: "Camera Screen (Coming Soon)",

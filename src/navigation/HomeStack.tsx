@@ -3,7 +3,7 @@ import { useHomeIndex } from "@/hooks/useHomeIndex";
 import HomeHeader from "@/screens/Home/components/HomeHeader";
 import { HomeShimmer } from "@/screens/Home/components/HomeShimmer";
 import TabIcon from "@components/icons/TabIcon";
-import { BottomTabNavigationOptions, createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import CameraScreen from "@screens/Camera/CameraScreen";
 import DiagnoseScreen from "@screens/Diagnose/DiagnoseScreen";
 import HomeScreen from "@screens/Home/HomeScreen";
@@ -14,9 +14,6 @@ import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { styles } from "./HomeStack.styles";
 
-/**
- * Type definitions for the bottom tab navigator's route parameters
- */
 export type HomeStackParamList = {
   HomeScreen: undefined;
   Diagnose: undefined;
@@ -28,37 +25,13 @@ export type HomeStackParamList = {
 const Tab = createBottomTabNavigator<HomeStackParamList>();
 
 /**
- * Main navigation stack shown after onboarding completion.
- * Handles data fetching for the entire home section and manages loading states.
+ * Main navigation stack shown after onboarding completion
  */
 const HomeStack: React.FC = () => {
-  // Fetch home data and manage loading state
   const { categories, questions, loading } = useHomeIndex();
   const insets = useSafeAreaInsets();
 
-  /**
-   * Common tab bar options applied to all screens
-   */
-  const tabBarOptions: BottomTabNavigationOptions = {
-    headerShown: false,
-    tabBarStyle: {
-      backgroundColor: colors.background.white + "92",
-      paddingBottom: 0,
-      borderTopWidth: 0,
-      elevation: 0,
-      shadowOpacity: 0,
-      height: 49 + insets.bottom,
-      bottom: 0,
-    },
-    tabBarActiveTintColor: colors.primary.green,
-    tabBarInactiveTintColor: colors.primary.inactive,
-    tabBarLabelStyle: {
-      fontSize: typography.size.sm,
-      fontFamily: typography.fonts.RubikRegular,
-    },
-  };
-
-  // Show loading state when no data is available
+  // Show loading state
   if (loading && categories.length === 0 && questions.length === 0) {
     return (
       <View style={styles.container}>
@@ -68,7 +41,26 @@ const HomeStack: React.FC = () => {
   }
 
   return (
-    <Tab.Navigator screenOptions={tabBarOptions}>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: colors.background.white + "92",
+          paddingBottom: 0,
+          borderTopWidth: 0,
+          elevation: 0,
+          shadowOpacity: 0,
+          height: 49 + insets.bottom,
+          bottom: 0,
+        },
+        tabBarActiveTintColor: colors.primary.green,
+        tabBarInactiveTintColor: colors.primary.inactive,
+        tabBarLabelStyle: {
+          fontSize: typography.size.sm,
+          fontFamily: typography.fonts.RubikRegular,
+        },
+      }}
+    >
       <Tab.Screen
         name="HomeScreen"
         component={HomeScreen}

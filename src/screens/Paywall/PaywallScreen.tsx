@@ -1,12 +1,12 @@
-import React, { useCallback } from "react";
-import { Text, View } from "react-native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { OnboardingStackParamList } from "@navigation/OnboardingStack";
+import CloseButton from "@/components/CloseButton/CloseButton";
+import { TEXTS } from "@/constants/text";
 import { useAppDispatch } from "@/store";
 import { completeOnboarding } from "@/store/slices/onboardingSlice";
-import { TEXTS } from "@/constants/text";
-import CloseButton from "@/components/CloseButton/CloseButton";
 import PrimaryButton from "@components/PrimaryButton/PrimaryButton";
+import { OnboardingStackParamList } from "@navigation/OnboardingStack";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import React from "react";
+import { Text, View } from "react-native";
 import styles from "./PaywallScreen.styles";
 import FeatureContainer from "./components/FeatureContainer";
 import PaywallInnerLayout from "./components/PaywallInnerLayout";
@@ -14,61 +14,33 @@ import PaywallLayout from "./components/PaywallLayout";
 import PlanBoxContainer from "./components/PlanBoxContainer";
 
 /**
- * Props for the PaywallScreen component
+ * Final screen in the onboarding flow with paywall.
+ * Completing this screen marks onboarding as done.
  */
-type PaywallScreenProps = NativeStackScreenProps<OnboardingStackParamList, "Paywall">;
-
-/**
- * Configuration constants for the paywall screen
- */
-const PAYWALL_CONFIG = {
-  ACCESSIBILITY: {
-    CLOSE_BUTTON: "Close paywall screen",
-    SUBSCRIBE_BUTTON: "Subscribe to premium plan",
-    TERMS_LINK: "View terms of service",
-    PRIVACY_LINK: "View privacy policy",
-    RESTORE_LINK: "Restore purchases",
-  },
-} as const;
-
-/**
- * PaywallScreen component that displays subscription options and features.
- * This is the final screen in the onboarding flow.
- *
- * Features:
- * - Subscription plan selection
- * - Feature showcase
- * - Premium benefits explanation
- * - Terms and privacy links
- * - Purchase restoration
- */
-const PaywallScreen: React.FC<PaywallScreenProps> = () => {
+const PaywallScreen: React.FC<
+  NativeStackScreenProps<OnboardingStackParamList, "Paywall">
+> = () => {
   const dispatch = useAppDispatch();
 
   /**
    * Complete onboarding when user closes paywall.
    * This will trigger RootNavigator to show MainStack.
    */
-  const handleClose = useCallback(async () => {
+  const handleClose = async () => {
     dispatch(completeOnboarding());
-  }, []);
+  };
 
   /**
-   * Handle subscription purchase.
-   * Currently a placeholder that just completes onboarding.
-   * TODO: Implement actual subscription logic
+   * Handle subscription purchase (placeholder).
    */
-  const handleSubscribe = useCallback(() => {
+  const handleSubscribe = () => {
     // TODO: Implement subscription logic
     handleClose();
-  }, []);
+  };
 
   return (
     <PaywallLayout>
-      <CloseButton
-        handleClose={handleClose}
-        accessibilityLabel={PAYWALL_CONFIG.ACCESSIBILITY.CLOSE_BUTTON}
-      />
+      <CloseButton handleClose={handleClose} />
       <PaywallInnerLayout>
         <Text style={styles.title}>
           <Text style={styles.titleBold}>{TEXTS.WELCOME.APP_NAME}</Text>{" "}
@@ -77,36 +49,14 @@ const PaywallScreen: React.FC<PaywallScreenProps> = () => {
         <Text style={styles.subtitle}>{TEXTS.PAYWALL.SUBTITLE}</Text>
         <FeatureContainer />
         <PlanBoxContainer />
-        <PrimaryButton
-          label={TEXTS.PAYWALL.CTA}
-          onPress={handleSubscribe}
-          accessibilityLabel={PAYWALL_CONFIG.ACCESSIBILITY.SUBSCRIBE_BUTTON}
-        />
+        <PrimaryButton label={TEXTS.PAYWALL.CTA} onPress={handleSubscribe} />
         <Text style={styles.legalText}>{TEXTS.PAYWALL.LEGAL}</Text>
         <View style={styles.linksRow}>
-          <Text
-            style={styles.link}
-            accessibilityRole="link"
-            accessibilityLabel={PAYWALL_CONFIG.ACCESSIBILITY.TERMS_LINK}
-          >
-            {TEXTS.PAYWALL.LINKS.TERMS}
-          </Text>
+          <Text style={styles.link}>{TEXTS.PAYWALL.LINKS.TERMS}</Text>
           <Text style={styles.linkDot}>•</Text>
-          <Text
-            style={styles.link}
-            accessibilityRole="link"
-            accessibilityLabel={PAYWALL_CONFIG.ACCESSIBILITY.PRIVACY_LINK}
-          >
-            {TEXTS.PAYWALL.LINKS.PRIVACY}
-          </Text>
+          <Text style={styles.link}>{TEXTS.PAYWALL.LINKS.PRIVACY}</Text>
           <Text style={styles.linkDot}>•</Text>
-          <Text
-            style={styles.link}
-            accessibilityRole="link"
-            accessibilityLabel={PAYWALL_CONFIG.ACCESSIBILITY.RESTORE_LINK}
-          >
-            {TEXTS.PAYWALL.LINKS.RESTORE}
-          </Text>
+          <Text style={styles.link}>{TEXTS.PAYWALL.LINKS.RESTORE}</Text>
         </View>
       </PaywallInnerLayout>
     </PaywallLayout>

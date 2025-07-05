@@ -1,35 +1,23 @@
-import React, { memo } from 'react';
-import { Path } from 'react-native-svg';
-import BaseIcon, { BaseIconProps } from './BaseIcon';
+import React from 'react';
+import Svg, { Path } from 'react-native-svg';
 
-/**
- * Props for the ChevronRightIcon component
- * Extends BaseIconProps to inherit all base icon functionality
- */
-type ChevronRightIconProps = BaseIconProps;
+interface Props {
+  color?: string;
+  size?: number;
+}
 
-/**
- * ChevronRightIcon component that renders a right-pointing chevron
- * using the BaseIcon component for consistent styling and behavior
- */
-const ChevronRightIcon: React.FC<ChevronRightIconProps> = ({
-  accessibilityLabel = "Right chevron",
-  ...props
-}) => {
+const ChevronRightIcon: React.FC<Props> = ({ color = '#E5C990', size = 24 }) => {
   return (
-    <BaseIcon accessibilityLabel={accessibilityLabel} {...props}>
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       <Path
         d="M9 18L15 12L9 6"
+        stroke={color}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </BaseIcon>
+    </Svg>
   );
 };
 
-// Display name for debugging purposes
-ChevronRightIcon.displayName = 'ChevronRightIcon';
-
-// Memoize the component to prevent unnecessary re-renders
-export default memo(ChevronRightIcon);
+export default ChevronRightIcon;

@@ -6,33 +6,12 @@ import { FlatList, View } from "react-native";
 import styles from "./HomeScreen.styles";
 import HomeCategoryItem from "./components/HomeCategoryItem";
 import HomeListHeader from "./components/HomeListHeader";
-import { Category } from "@/types/category";
 
-/**
- * Main home screen component that displays:
- * 1. A header with greeting and search
- * 2. A grid of plant categories
- * 3. Error state with retry option
- */
 export const HomeScreen: React.FC = () => {
   const { categories, error } = useAppSelector((state) => state.home);
   const dispatch = useAppDispatch();
 
-  /**
-   * Renders a single category item in the grid
-   * @param item - The category data to render
-   */
-  const renderCategoryItem = ({ item }: { item: Category }) => (
-    <HomeCategoryItem title={item.title} url={item.image.url} />
-  );
-
-  /**
-   * Unique key extractor for FlatList items
-   * @param category - The category item
-   */
-  const keyExtractor = (category: Category) => category.id.toString();
-
-  // Show error state with retry option
+  // Show error state
   if (error) {
     return (
       <View style={styles.container}>
@@ -44,13 +23,14 @@ export const HomeScreen: React.FC = () => {
       </View>
     );
   }
-
   return (
     <View style={styles.innerContainer}>
       <FlatList
         data={categories}
-        keyExtractor={keyExtractor}
-        renderItem={renderCategoryItem}
+        keyExtractor={(c) => c.id.toString()}
+        renderItem={({ item }) => (
+          <HomeCategoryItem title={item.title} url={item.image.url} />
+        )}
         numColumns={2}
         columnWrapperStyle={styles.columnWrapper}
         contentContainerStyle={styles.contentContainer}

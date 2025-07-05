@@ -10,18 +10,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: layout.button.height,
   },
-  disabled: {
-    backgroundColor: colors.background.lightGray,
-    opacity: 0.6,
-  },
   label: {
     color: colors.text.white,
     fontSize: typography.size.md,
     fontFamily: typography.fonts.SFProTextBold,
     letterSpacing: 0.5,
-  },
-  disabledText: {
-    color: colors.text.secondary,
   },
 });
 
